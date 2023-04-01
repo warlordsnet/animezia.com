@@ -3,7 +3,7 @@
     <a href="https://animezia.com/">
       <img src="https://cdnzia.pages.dev/images/logo.webp" alt="Logo">
     </a>
-    <h3>AnimeZia - Watch High Quality Anime Online, No Ads !</h3>
+    <h1>AnimeZia - Watch High Quality Anime Online, No Ads !</h1>
     
   </div>
 
@@ -16,14 +16,16 @@
 * Project is OPENSOURCE
 
 
-  <p align="center">
-    Demo https://linkzia.42web.io/ <br>
-    This is a PHP application used for browsing, searching and fetching anime details and episodes.
-  </p>
-</p>
-
-<!-- PREVIEW IMAGE -->
+  <div align="center">
+   <h2> Demo http://linkzia.42web.io/ </h2> <br>
+   <!-- PREVIEW IMAGE -->
 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiceJ8ksJ7c_-6zydA2eB2l9jKM0ls32LALgy60oizZrMn4tJwZ1IH48aurvpgoH6aok11EjXQ5YPfytuc-oXJJ6q5Ar83fV6nXQrvgSdNhQPMZ96dNxkqh6SEyEJK6flk-UWQncxzqurvh_nls_yZ8VEDJ-zDpQeCVKdq1WzztkqsLendtpbNgXYXLQw/s700/Screenshot%202023-04-01%20184807.png">
+   <p> A PHP web application used for browsing, searching and fetching anime details and episodes.</p>
+  </div>
+  
+  <hr />
+### This is old source of https://animezia.com
+New source code of animezia.com will not be public anytime soon.
 
 <hr/>
 
@@ -36,8 +38,6 @@
  - 🎨Responsive Design and SEO optimized.
  - ⭐Anime Available Based on Genres, Seasons, categories, status, language.
  - 🚀Ready to deploy code.
-
-
 
 
 ## Requirements
@@ -53,7 +53,10 @@
 ## Online Deployment
 
 Deploy on any PHP Apache hosting.
-You can try these free hosting providers for demo or testing - https://www.infinityfree.net/   https://profreehost.com/    https://in.000webhost.com/free-php-hosting
+You can try these free hosting providers for demo or testing -
+ - https://www.infinityfree.net/   
+ - https://profreehost.com/   
+ - https://in.000webhost.com/free-php-hosting
 
 ## Local Deployment
 
@@ -63,11 +66,19 @@ git clone https://github.com/warlordsnet/animezia.com
 cd animezia.com
 ```
 
-Now start the production build of the site
-```
-Start Apache Server (php environment) such as XAMPP, WAMP
-```
+Now start the production build of the site:
+ - Use the following systemctl command on Debian Linux version 8.x+ or Ubuntu Linux version Ubuntu 15.04+ or above:
 
+```
+## Start command ##
+sudo systemctl start apache2.service
+## Stop command ##
+sudo systemctl stop apache2.service
+## Restart command ##
+sudo systemctl restart apache2.service
+```
+We can view status using the following command:
+`sudo systemctl status apache2.service`
 
 ## Sponsor this project
 riley.famc@idfcbank
