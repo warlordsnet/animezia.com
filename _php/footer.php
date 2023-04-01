@@ -98,7 +98,7 @@
             </div>
             <div class="about-text">AnimeZia does not store any files on our server, we only share link to the
                 media which is hosted on 3rd party services.</div>
-            <p class="copyright">Served with <i class="fas fa-heart"></i> AnimeZia 2023. Frontend by Otakatsu</p>
+            <p class="copyright">Served with <i class="fas fa-heart"></i> <a href="https://animezia.com">AnimeZia</a> 2023. Frontend by Otakatsu</p>
         </div>
     </div>
 </div>
