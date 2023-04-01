@@ -17,7 +17,7 @@
 
 
   <p align="center">
-    Demo <a href="https://animezia.com">https://animezia.com</a> <br>
+    Demo https://linkzia.42web.io/ <br>
     This is a PHP application used for browsing, searching and fetching anime details and episodes.
   </p>
 </p>
