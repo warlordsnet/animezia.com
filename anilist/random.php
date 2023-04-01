@@ -2,7 +2,7 @@
 require_once('../_config.php');
 
  $iani = "hxxpz:qqapi*c=nzumex*=rg";
- $s1 = str_replace("x","t",$ini);
+ $s1 = str_replace("x","t",$iani);
  $s2 = str_replace("z","s",$s1);
  $s3 = str_replace("q","/",$s2);
  $s4 = str_replace("*",".",$s3);

@@ -372,7 +372,7 @@ $episodelist = $getAnime['episode_id'];
                                                 <div class="span3"></div>
                                             </div>
                                         </div>
-                                        <iframe name="iframe-to-load" src="<?=$websiteUrl?>/player/<?=$url?>" frameborder="0" scrolling="no" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+                                        <iframe name="iframe-to-load" src="https://animezia.com/player/<?=$url?>" frameborder="0" scrolling="no" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
                                     </div>
                                     <div class="player-controls">
                                         <div class="pc-item pc-resize">
@@ -424,7 +424,7 @@ $episodelist = $getAnime['episode_id'];
                                             <div class="ps__-title"><i class="fas fa-server mr-2"></i>SERVERS:</div>
                                             <div class="ps__-list">
                                                 <div class="item">
-                                                    <a id="server1" href="<?=$websiteUrl?>/player/<?=$url?>" target="iframe-to-load" class="btn btn-server active">Server 1</a>
+                                                    <a id="server1" href="https://animezia.com/player/<?=$url?>" target="iframe-to-load" class="btn btn-server active">Server 1</a>
                                                 </div>
                                                 
                                             </div>
