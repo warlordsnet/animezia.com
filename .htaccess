@@ -1,0 +1,22 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(([A-Za-z0-9\-]+/)*[A-Za-z0-9\-]+)?$ $1.php
+
+RewriteRule ^anime/([a-zA-Z0-9-=_]+) animeDetails.php
+RewriteRule ^watch/([a-zA-Z0-9-=_]+) streaming.php
+
+RewriteRule ^sub-category/([a-zA-Z0-9-=_]+) sub-category/id.php
+RewriteRule ^genre/([a-zA-Z0-9-=_]+) genre/id.php
+RewriteRule ^az-list/([A-Z]) az-list/id.php
+
+
+RewriteRule ^sitemaps/recentCN-sitemap.xml sitemaps/recentCN-sitemap.php
+RewriteRule ^sitemaps/recentDUB-sitemap.xml sitemaps/recentDUB-sitemap.php
+RewriteRule ^sitemaps/recentSUB-sitemap.xml sitemaps/recentSUB-sitemap.php
+RewriteRule ^sitemaps/ongoing-sitemap.xml sitemaps/ongoing-sitemap.php
+RewriteRule ^sitemaps/allanime-sitemap.xml sitemaps/allanime-sitemap.php
+RewriteRule ^sitemaps/sitemap.xml sitemaps/sitemap.php
+RewriteRule ^sitemap.xml sitemap.php
+
+ErrorDocument 404 /404.php

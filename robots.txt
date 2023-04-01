@@ -1,0 +1,15 @@
+User-agent: *
+Disallow: 
+Allow: /
+
+Sitemap: <?=$websiteUrl?>/sitemap.xml
+
+Sitemap: <?=$websiteUrl?>/recentSUB-sitemap.xml
+
+Sitemap: <?=$websiteUrl?>/sitemaps/sitemap.xml
+
+Sitemap: <?=$websiteUrl?>/sitemaps/ongoing-sitemap.xml
+
+Sitemap: <?=$websiteUrl?>/recentCN-sitemap.xml
+
+Sitemap: <?=$websiteUrl?>/recentDUB-sitemap.xml

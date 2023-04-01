@@ -1,0 +1,10 @@
+{
+    "name": "AnimeZia",
+    "description": "A free anime streaming website",
+    "keywords": ["AnimeZia", "gogoanime no ads", "Free Streaming", "ad free watch online", "stream anime online"],
+    "website": "<?=$websiteUrl?>",
+    "logo": "<?=$cdn?>/images/logo.webp",
+
+    "image": "heroku/php",
+    "stack": "heroku-22"
+}

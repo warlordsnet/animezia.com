@@ -1,0 +1,21 @@
+{
+	"short_name": "AnimeZia",
+	"name": "Watch Anime for Free!",
+	"icons": [
+		{
+			"src": "/favicon.ico",
+			"type": "image/x-icon",
+			"sizes": "48x48"
+		},
+		{
+			"src": "<?=$cdn?>/images/logo.webp",
+			"type": "image/webp",
+			"sizes": "300x93"
+		}
+	],
+	"start_url": "/?source=pwa",
+	"background_color": "#3367D6",
+	"display": "standalone",
+	"scope": "/",
+	"theme_color": "#3367D6"
+}
