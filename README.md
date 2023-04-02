@@ -24,7 +24,8 @@
   </div>
   
   <hr />
-### This is old source of https://animezia.com
+<h3>This is old source of https://animezia.com </h3>
+<h4>This is an improved version of <a href="https://github.com/shashankktiwariii/anikatsu">Anikatsu</a> - Base code of this repo.</h4>
 New source code of animezia.com will not be public anytime soon.
 
 <hr/>
@@ -58,6 +59,14 @@ You can try these free hosting providers for demo or testing -
  - https://profreehost.com/   
  - https://in.000webhost.com/free-php-hosting
 
+## Hosting from cpanel.
+Buy Php hosting from ambitionhost.in (cheap), hostinger.in, bluehost.in or godaddy.
+If you have purchased Cpanel from hosting provider then follow these:
+ - Login your Cpanel > Open file manager. ![image](https://user-images.githubusercontent.com/96106468/229330640-e5efbb5b-ca74-47f5-8316-f4a052cd9e4a.png)
+ - Open `public_html` (some cpanel may have `htdocs` instead of public_html so follow same steps) ![image](https://user-images.githubusercontent.com/96106468/229330740-37fff5cd-fbc1-47fd-a57b-909b9abc50ea.png)
+ - Upload the files of this repo in the public_html directory.
+ - configure domains and site is ready ✨
+
 ## Local Deployment
 
 First download the repository using. After cloning, change the repo name to your site name.
@@ -81,4 +90,6 @@ We can view status using the following command:
 `sudo systemctl status apache2.service`
 
 ## Sponsor this project
-riley.famc@idfcbank
+ - riley.famc@idfcbank    - Support warlords.
+
+ - [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/shashankk)  - Support original creator of base code
