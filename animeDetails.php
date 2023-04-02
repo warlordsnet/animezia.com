@@ -1,27 +1,14 @@
 <?php 
 require_once('./_config.php');
+
 $parts=parse_url($_SERVER['REQUEST_URI']); 
 $page_url=explode('/', $parts['path']);
 $url = $page_url[count($page_url)-1];
 //$url = "naruto";
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "$api/anime-details/$url");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-curl_setopt($ch, CURLOPT_HEADER, FALSE);
 
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-  "Content-Type: application/json"
-));
-
-$getAnime = curl_exec($ch);
-
+$getAnime = file_get_contents("$api/getAnime/$url");
 $getAnime = json_decode($getAnime, true);
-
-//$getAnime = file_get_contents("$api/getAnime/$url");
-//$getAnime = json_decode($getAnime, true);
 $episodelist = $getAnime['episode_id'];
-
-curl_close($ch);
 ?>
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -43,9 +30,9 @@ curl_close($ch);
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="AnimeZia">
     <meta property="og:url" content="<?=$websiteUrl?>/anime/<?=$url?>">
-    <meta itemprop="image" content="<?=$getAnime['animeImg']?>">
-    <meta property="og:image" content="<?=$getAnime['animeImg']?>">
-    <meta property="og:image:secure_url" content="<?=$getAnime['animeImg']?>">
+    <meta itemprop="image" content="<?=$getAnime['imageUrl']?>">
+    <meta property="og:image" content="<?=$getAnime['imageUrl']?>">
+    <meta property="og:image:secure_url" content="<?=$getAnime['imageUrl']?>">
     <meta property="og:image:width" content="650">
     <meta property="og:image:height" content="350">
     <meta property="twitter:title" content="Watch <?=$getAnime['name']?> - AnimeZia">
@@ -92,13 +79,13 @@ curl_close($ch);
                     <div class="container">
                         <div class="anis-cover-wrap">
                             <div class="anis-cover"
-                                style="background-image: url('<?=$getAnime['animeImg']?>')"></div>
+                                style="background-image: url('<?=$getAnime['imageUrl']?>')"></div>
                         </div>
                         <div class="anis-content">
                             <div class="anisc-poster">
                                 <div class="film-poster">
                                     <img src="<?=$cdn?>/images/no_poster.jpg"
-                                        data-src="<?=$getAnime['animeImg']?>"
+                                        data-src="<?=$getAnime['imageUrl']?>"
                                         class="lazyload film-poster-img">
                                 </div>
                             </div>

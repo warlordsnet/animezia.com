@@ -25,7 +25,6 @@ $cdn = "https://cdnzia.pages.dev"; // cdn repo https://github.com/warlordsnet/cd
 // API URL
 $api ="https://animezia.onrender.com"; // api repo https://github.com/warlordsnet/zia-api
 
-//$ani = "https://api.consumet.org";
 
 $banner = "https://cdnzia.pages.dev/images/banner.webp";  //Banner
 ?>

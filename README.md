@@ -42,14 +42,14 @@ New source code of animezia.com will not be public anytime soon.
 
 
 ## Requirements
---> **Before running check if .htaccess file is present in root dir**
-<br>
---> Php environment or Directly Upload the code on php supported hosting (No editing Required Just Upload and Enjoy)
-<br>
---> **To Update Website Info (Website name, logo, favicon, socials url) Edit `_config.php` file**
-<br>
---> Recommended: First deploy the <a href="https://github.com/warlordsnet/zia-api">API REPO</a>. Run It and Update the `$api` variable in `_config.php` with new URL. 
+ - **Before running check if .htaccess file is present in root dir**
 
+ - Php environment or Directly Upload the code on php supported hosting (No editing Required Just Upload and Enjoy)
+
+ - **To Update Website Info (Website name, logo, favicon, socials url) Edit `_config.php` file**
+
+ - First deploy the <a href="https://github.com/warlordsnet/zia-api">API REPO</a>. Run It and Update the `$api` variable in `_config.php` with new URL. 
+ - Deploy the <a href="https://github.com/warlordsnet/cdnzia">CDN repo</> and add it's url in  `_config.php`
 
 ## Online Deployment
 
