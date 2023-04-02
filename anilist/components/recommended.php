@@ -9,12 +9,7 @@
                             <div class="block_area-content block_area-list film_list film_list-grid film_list-wfeature">
                                 <div class="film_list-wrap">
                                 <?php 
-								 $iani = "hxxpz:qqapi*c=nzumex*=rg";
-                                 $s1 = str_replace("x","t",$iani);
-                                 $s2 = str_replace("z","s",$s1);
-                                 $s3 = str_replace("q","/",$s2);
-                                 $s4 = str_replace("*",".",$s3);
-                                 $ani = str_replace("=","o",$s4);
+								
 								 
                                 $json = file_get_contents("$ani/meta/anilist/info/$id");
                                 $json = json_decode($json, true);

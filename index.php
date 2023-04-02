@@ -309,7 +309,7 @@ if ('serviceWorker' in navigator) {
         <div id="xfooter-about">
             <div class="container">
                 <p class="copyright">© 2023
-                     <a href="<?=$websiteUrl?>">AnimeZia</a>. Website code rights reserved.
+                     <a href="<?=$websiteUrl?>">AnimeZia</a>. Frontend by Otakatsu.
                 </p>
             </div>
         </div>

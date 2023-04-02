@@ -372,7 +372,7 @@ $episodelist = $getAnime['episode_id'];
                                                 <div class="span3"></div>
                                             </div>
                                         </div>
-                                        <iframe name="iframe-to-load" src="https://animezia.com/player/<?=$url?>" frameborder="0" scrolling="no" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+                                        <iframe name="iframe-to-load" id="iframeid" src="https://animezia.com/player/<?=$url?>" frameborder="0" scrolling="no" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
                                     </div>
                                     <div class="player-controls">
                                         <div class="pc-item pc-resize">
@@ -389,6 +389,7 @@ $episodelist = $getAnime['episode_id'];
                                             <a class="btn btn-sm pc-download"
                                                 href="<?=$download?>"
                                                 target="_blank"><i class="fas fa-download mr-2"></i>Download</a>
+												<a onclick='reload()' class="btn btn-sm pc-download"><i class="fas fa-refresh mr-2"></i>Refresh</a>
                                         </div>
                                         <div class="pc-right">
                                         <?php if($getEpisode['prevEpText'] == "") {
@@ -405,19 +406,21 @@ $episodelist = $getAnime['episode_id'];
                                             <button class="btn btn-secondary" type="button" style="float:right;height: 32px;font-size: 14px;font-weight: normal;display: block;">Next <i class="fa fa-step-forward"></i></button>
                                         </a>
                                         <?php } ?>
-                                            <div class="pc-item pc-fav" id="watch-list-content"></div>
+                                            
                                             <div class="pc-item pc-download" style="display:none;">
                                                 <a class="btn btn-sm pc-download"><i class="fas fa-download mr-2"></i>Download</a>
+												<a onclick='reload()' class="btn btn-sm pc-download"><i class="fas fa-refresh mr-2"></i>Refresh</a>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
+			
                                 <div class="player-servers">
                                     <div id="servers-content">
                                         <div class="ps_-status">
                                             <div class="content">
-                                                <div class="server-notice"><strong>Currently watching <b>Episode <?=$getEpisode['ep_num']?></b></strong> Switch to alternate servers in case of error.</div>
+                                                <div class="server-notice"><strong>Currently watching <b>Episode <?=$getEpisode['ep_num']?></b></strong> Click Refresh button if not working.</div>
                                             </div>
                                         </div>
                                         <div class="ps_-block ps_-block-sub servers-mixed">
@@ -454,6 +457,10 @@ $episodelist = $getAnime['episode_id'];
   </form>
 </div>
 <script>
+ function reload() {
+                document.getElementById('iframeid').src += '';
+            }
+			
   function numberOnly(id) {
     var element = document.getElementById(id);
     element.value = element.value.replace(/[^0-9]/gi, "");

@@ -45,7 +45,7 @@ $episodelist = $getAnime['episode_id'];
     <link rel="stylesheet" href="<?=$cdn?>/css/style.css">
     <link rel="stylesheet" href="<?=$cdn?>/css/min.css">
 	<script async src="https://arc.io/widget.min.js#wHLGVKUU"></script>
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-63430163bc99824a"></script>
+   
     <script type="text/javascript">
         setTimeout(function () {
             var wpse326013 = document.createElement('link');
@@ -121,11 +121,13 @@ $episodelist = $getAnime['episode_id'];
                                           $last_word_start = strrpos ( $str , " ") + 1;
                                           $last_word_end = strlen($str) - 1;
                                           $last_word = substr($str, $last_word_start, $last_word_end);
-                                          if ($last_word == "(Dub)"){echo "Dubbed";} else {echo "Subbed";}
+                                          if ($last_word == "(Dub)"){echo "DUB";} else {echo "SUB";}
                                     ?>
                                     </div>
                                     <span class="dot"></span>
                                     <span class="item"><?=$getAnime['type']?></span>
+									<span class="dot"></span>
+                                    <span class="item"><?=$getAnime['totalEpisodes']?></span>
                                     <div class="clearfix"></div>
                                 </div>
                                 <?php if(count($getAnime['episode_id']) == 0) {
@@ -140,17 +142,7 @@ $episodelist = $getAnime['episode_id'];
                                     <div class="text"><?=$getAnime['synopsis']?></div>
                                 </div>
                                 <div class="film-text m-hide">AnimeZia is a site to watch online anime like <strong><?=$getAnime['name']?></strong> online, or you can even watch <strong><?=$getAnime['name']?></strong> in HD quality</div>
-                                <div class="share-buttons share-buttons-min mt-3">
-                                <div class="share-buttons-block" style="padding-bottom: 0 !important;">
-                                    <div class="share-icon"></div>
-                                    <div class="sbb-title">
-                                        <span>Share Anime</span>
-                                        <p class="mb-0">to your friends</p>
-                                    </div>
-                                    <div class="addthis_inline_share_toolbox"></div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
+                                
                             </div>
                             <div class="anisc-info-wrap">
                                 <div class="anisc-info">
@@ -168,7 +160,7 @@ $episodelist = $getAnime['episode_id'];
                                                 $last_word_start = strrpos ( $str , " ") + 1;
                                                 $last_word_end = strlen($str) - 1;
                                                 $last_word = substr($str, $last_word_start, $last_word_end);
-                                                if ($last_word == "(Dub)"){echo "Dubbed";} else {echo "Subbed";}
+                                                if ($last_word == "(Dub)"){echo "Dub";} else {echo "Sub";}
                                             ?>
                                         </span>
                                     </div>
@@ -196,19 +188,10 @@ $episodelist = $getAnime['episode_id'];
                     </div>
                 </div>
             </div>
+			
             <div class="container">
                 <div id="main-content">
-                    <section class="block_area block_area-comment">
-                        <div class="block_area-header block_area-header-tabs">
-                            <div class="float-left bah-heading mr-4">
-                                <h2 class="cat-heading">Comments</h2>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="tab-content">
-                          <?php include('./_php/disqus.php'); ?>
-                        </div>
-                    </section>
+                    
 
                     <?php include('./_php/recent-releases.php'); ?>
                     <div class="clearfix"></div>

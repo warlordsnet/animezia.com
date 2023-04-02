@@ -2,13 +2,6 @@
 require_once('../_config.php');
 $id = $_GET['id'];
 
- $iani = "hxxpz:qqapi*c=nzumex*=rg";
- $s1 = str_replace("x","t",$iani);
- $s2 = str_replace("z","s",$s1);
- $s3 = str_replace("q","/",$s2);
- $s4 = str_replace("*",".",$s3);
- $ani = str_replace("=","o",$s4);
-
 $getAnime = file_get_contents("$ani/meta/anilist/info/$id");
 $getAnime = json_decode($getAnime, true);
 $title = $getAnime['title'];
@@ -81,19 +74,6 @@ $episodelist = $getAnime['episodes'];
             <div class="container">
                 <div id="main-content">
 
-                    <section class="block_area block_area-comment">
-                        <div class="block_area-header block_area-header-tabs">
-                            <div class="float-left bah-heading mr-4">
-                                <h2 class="cat-heading">Comments</h2>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="tab-content">
-                          <?php include('../_php/disqus.php'); ?>
-                        </div>
-                    </section>
-                   
-                
                     <?php include('./components/recommended.php'); ?>
                     <div class="clearfix"></div>
                 </div>
