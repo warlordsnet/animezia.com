@@ -480,6 +480,18 @@ $episodelist = $getAnime['episode_id'];
     document.getElementById("srep").click();
   }
 });
+
+
+	
+	const route = window.location ;
+	var isdub = route.route.includes("-dub");
+	if ( isdub == true) {
+	var subr = window.location.replace("-dub"," ")
+	sdbtn = document.getElementById("subdub");
+	sdbtn.setAttribute("href", subr);
+	sdbtn.innerHTML = "Watch SUB"; 
+	}
+
 </script>
                                                     <div class="clearfix"></div>
                                                 </div>
@@ -513,8 +525,8 @@ $episodelist = $getAnime['episode_id'];
                                 <div class="anis-content">
                                     <div class="anisc-poster">
                                         <div class="film-poster">
-                                            <img src="<?=$getAnime['imageUrl']?>"
-                                                data-src="<?=$getAnime['imageUrl']?>"
+                                            <img src="https://ik.imagekit.io/<?=$imgk?>/tr:w-200,f-webp/<?=$getAnime['imageUrl']?>"
+                                                data-src="https://ik.imagekit.io/<?=$imgk?>/tr:w-200,f-webp/<?=$getAnime['imageUrl']?>"
                                                 class="film-poster-img ls-is-cached lazyloaded"
                                                 alt="Watch free online <?=$getAnime['name']?> on animezia">
                                         </div>
@@ -527,7 +539,7 @@ $episodelist = $getAnime['episode_id'];
                                         </h2>
                                         <div class="film-stats">
                                             <div class="tac tick-item tick-quality">HD</div>
-                                            <div class="tac tick-item tick-dub">SUB</div>
+                                            <div class="tac tick-item tick-dub">SUB/DUB</div>
                                             <span class="dot"></span>
                                             <span class="item"><?=$getAnime['status']?></span>
                                             <span class="dot"></span>
@@ -542,6 +554,9 @@ $episodelist = $getAnime['episode_id'];
                                             <div class="text"><?=$getAnime['synopsis']?></div>
                                         </div>
                                         <div class="film-text m-hide mb-3">
+									
+                                                    <a id="subdub" class="btn btn-primary"></a>
+                                      
                                             AnimeZia is a site to watch online anime like <strong><?=$getAnime['name']?></strong> online, or you can even watch <strong><?=$getAnime['name']?></strong> in HD quality
                                         </div>
                                         <div class="block"><a href="/anime/<?=$anime?>"

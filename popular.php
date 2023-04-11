@@ -108,7 +108,7 @@ if ($page == ""){
                                             <div class="tick rtl">
                                             </div>
                                             <img class="film-poster-img lazyload"
-                                                data-src="<?=$popular['imgUrl']?>"
+                                                data-src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$popular['imgUrl']?>"
                                                 src="<?=$cdn?>/images/no_poster.jpg"
                                                 alt="watch stream <?=$popular['animeTitle']?> online animezia">
                                             <a class="film-poster-ahref"

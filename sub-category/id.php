@@ -113,7 +113,7 @@ if ($page == ""){
                                             <div class="tick rtl">
                                             </div>
                                             <img class="film-poster-img lazyload"
-                                                data-src="<?=$subCat['imgUrl']?>"
+                                                data-src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$subCat['imgUrl']?>"
                                                 src="<?=$cdn?>/images/no_poster.jpg"
                                                 alt="stream <?=$subCat['animeTitle']?> free online animezia watch">
                                             <a class="film-poster-ahref"

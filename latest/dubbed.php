@@ -99,7 +99,7 @@ if ($page == ""){
                                                 <div class="tick-item tick-eps amp-algn">Episode <?=$dubbed['episodeNum']?></div>
                                             </div>
                                             <img class="film-poster-img lazyload"
-                                                data-src="<?=$dubbed['imgUrl']?>"
+                                                data-src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$dubbed['imgUrl']?>"
                                                 src="<?=$cdn?>/images/no_poster.jpg"
                                                 alt="<?=$dubbed['name']?>">
                                             <a class="film-poster-ahref"

@@ -25,6 +25,8 @@ $cdn = "https://cdnzia.pages.dev"; // cdn repo https://github.com/warlordsnet/cd
 // API URL
 $api ="https://animezia.onrender.com"; // api repo https://github.com/warlordsnet/zia-api
 
+$imgk = "ani1"; // your imagekit id
+
  $iani = "hxxpz:qqapi*c=nzu?ex*=rg";
  $s1 = str_replace("x","t",$iani);
  $s2 = str_replace("z","s",$s1);

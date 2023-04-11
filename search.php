@@ -110,8 +110,8 @@ if ($page == ""){
                                             <div class="tick rtl">
                                             </div>
                                             <img class="film-poster-img lazyload"
-                                                data-src="<?=$search['img_url']?>"
-                                                src="<?=$cdn?>/images/no_poster.jpg"
+                                                data-src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$search['img_url']?>"
+                                                src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$cdn?>/images/no_poster.jpg"
                                                 alt="<?=$search['name']?>">
                                             <a class="film-poster-ahref"
                                                 href="/anime/<?=$search['anime_id']?>"

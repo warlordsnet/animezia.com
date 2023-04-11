@@ -84,8 +84,8 @@ $episodelist = $getAnime['episode_id'];
                         <div class="anis-content">
                             <div class="anisc-poster">
                                 <div class="film-poster">
-                                    <img src="<?=$cdn?>/images/no_poster.jpg"
-                                        data-src="<?=$getAnime['imageUrl']?>"
+                                    <img src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$cdn?>/images/no_poster.jpg"
+                                        data-src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$getAnime['imageUrl']?>"
                                         class="lazyload film-poster-img">
                                 </div>
                             </div>

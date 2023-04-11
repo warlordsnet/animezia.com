@@ -103,7 +103,7 @@ if ($page == ""){
                                                 <div class="tick-item tick-eps amp-algn">Episode <?=$chinese['episodeNum']?></div>
                                             </div>
                                             <img class="film-poster-img lazyload"
-                                                data-src="<?=$chinese['imgUrl']?>"
+                                                data-src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$chinese['imgUrl']?>"
                                                 src="<?=$cdn?>/images/no_poster.jpg"
                                                 alt="<?=$chinese['name']?>">
                                             <a class="film-poster-ahref"

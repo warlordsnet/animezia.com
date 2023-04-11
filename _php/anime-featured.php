@@ -20,9 +20,9 @@
                             <li>
                                 <div class="film-poster">
                                     <img class="film-poster-img ls-is-cached lazyloaded"
-                                        data-src="<?=$fallAnime['imgUrl']?>"
+                                        data-src="https://ik.imagekit.io/<?=$imgk?>/tr:w-100,f-webp/<?=$fallAnime['imgUrl']?>"
                                         alt="<?=$fallAnime['animeTitle']?>"
-                                        src="<?=$fallAnime['imgUrl']?>"
+                                        src="https://ik.imagekit.io/<?=$imgk?>/tr:w-100,f-webp/<?=$fallAnime['imgUrl']?>"
                                         title="<?=$fallAnime['animeTitle']?>">
                                 </div>
                                 <div class="film-detail">
@@ -65,9 +65,9 @@
                             <li>
                                 <div class="film-poster">
                                     <img class="film-poster-img ls-is-cached lazyloaded"
-                                        data-src="<?=$fallAnime['imgUrl']?>"
+                                        data-src="https://ik.imagekit.io/<?=$imgk?>/tr:w-100,f-webp/<?=$fallAnime['imgUrl']?>"
                                         alt="<?=$fallAnime['animeTitle']?>"
-                                        src="<?=$fallAnime['imgUrl']?>"
+                                        src="https://ik.imagekit.io/<?=$imgk?>/tr:w-100,f-webp/<?=$fallAnime['imgUrl']?>"
                                         title="<?=$fallAnime['animeTitle']?>">
                                 </div>
                                 <div class="film-detail">
@@ -110,9 +110,9 @@
                             <li>
                                 <div class="film-poster">
                                     <img class="film-poster-img ls-is-cached lazyloaded"
-                                        data-src="<?=$fallAnime['imgUrl']?>"
+                                        data-src="https://ik.imagekit.io/<?=$imgk?>/tr:w-100,f-webp/<?=$fallAnime['imgUrl']?>"
                                         alt="<?=$fallAnime['animeTitle']?>"
-                                        src="<?=$fallAnime['imgUrl']?>"
+                                        src="https://ik.imagekit.io/<?=$imgk?>/tr:w-100,f-webp/<?=$fallAnime['imgUrl']?>"
                                         title="<?=$fallAnime['animeTitle']?>">
                                 </div>
                                 <div class="film-detail">
@@ -157,9 +157,9 @@
                             <li>
                                 <div class="film-poster">
                                     <img class="film-poster-img ls-is-cached lazyloaded"
-                                        data-src="<?=$fallAnime['imgUrl']?>"
+                                        data-src="https://ik.imagekit.io/<?=$imgk?>/tr:w-100,f-webp/<?=$fallAnime['imgUrl']?>"
                                         alt="<?=$fallAnime['animeTitle']?>"
-                                        src="<?=$fallAnime['imgUrl']?>"
+                                        src="https://ik.imagekit.io/<?=$imgk?>/tr:w-100,f-webp/<?=$fallAnime['imgUrl']?>"
                                         title="<?=$fallAnime['animeTitle']?>">
                                 </div>
                                 <div class="film-detail">

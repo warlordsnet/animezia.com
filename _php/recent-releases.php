@@ -27,8 +27,8 @@
                                                 </div>
                                             </div>
                                             <img class="film-poster-img lazyload"
-                                                data-src="<?=$recentRelease['imgUrl']?>"
-                                                src="<?=$recentRelease['imgUrl']?>"
+                                                data-src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$recentRelease['imgUrl']?>"
+                                                src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$recentRelease['imgUrl']?>"
                                                 alt="<?=$recentRelease['name']?>">
                                             <a class="film-poster-ahref"
                                                 href="/watch/<?=$recentRelease['episodeId']?>"

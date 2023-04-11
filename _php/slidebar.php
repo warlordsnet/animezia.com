@@ -1,12 +1,6 @@
 <div class="swiper-wrapper">
     <?php 
-	 $iani = "hxxpz:qqapi*c=nzumex*=rg";
- $s1 = str_replace("x","t",$iani);
- $s2 = str_replace("z","s",$s1);
- $s3 = str_replace("q","/",$s2);
- $s4 = str_replace("*",".",$s3);
- $ani = str_replace("=","o",$s4);
- 
+
     $json = file_get_contents("$ani/meta/anilist/trending");
     $json = json_decode($json, true);
     foreach($json['results'] as $key => $spotlight) { ?>
@@ -16,7 +10,7 @@
             <div class="deslide-cover">
                 <div class="deslide-cover-img">
                     <img class="film-poster-img lazyload"
-                        data-src="<?=$spotlight['cover']?>"
+                        data-src="https://ik.imagekit.io/<?=$imgk?>/tr:w-1000,f-webp,bl-2/<?=$spotlight['cover']?>"
                         alt="Watch <?=$title['romaji']?> free online on animezia">
                 </div>
             </div>

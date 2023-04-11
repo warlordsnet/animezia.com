@@ -61,7 +61,7 @@
     <section class="block_area block_area_sidebar block_area-realtime">
         <div class="block_area-header">
             <div class="float-left bah-heading mr-2">
-                <h2 class="cat-heading">Treading Anime</h2>
+                <h2 class="cat-heading">Top Ongoing</h2>
             </div>
             <div class="float-right bah-tab-min">
                 <ul class="nav nav-pills nav-fill nav-tabs anw-tabs">
@@ -90,9 +90,9 @@
                                 <li class="<?php if($key < 3) echo "item-top"?>">
                                     <div class="film-number"><span><?=$key + 1?></span></div>
                                     <div class="film-poster">
-                                        <img data-src="https://res.cloudinary.com/animezia/image/fetch/w_100,q_auto,f_auto/<?=$trending['animeImg']?>"
+                                        <img data-src="https://ik.imagekit.io/<?=$imgk?>/tr:w-100,f-webp/<?=$trending['animeImg']?>"
                                             class="film-poster-img lazyload tooltipEl" alt="Top trending <?=$trending['animeTitle']?> on animezia"
-                                            src="<?=$trending['animeImg']?>" title="<?=$trending['animeTitle']?>">
+                                            src="https://ik.imagekit.io/<?=$imgk?>/tr:w-100,f-webp/<?=$trending['animeImg']?>" title="<?=$trending['animeTitle']?>">
                                     </div>
                                     <div class="film-detail">
                                         <h3 class="film-name">

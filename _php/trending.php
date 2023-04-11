@@ -13,6 +13,7 @@
                         <div class="swiper-wrapper">
 
                             <?php 
+							
                                 $json = file_get_contents("$ani/meta/anilist/trending");
                                 $json = json_decode($json, true);
                                 foreach($json['results'] as $key => $popular) { ?>
@@ -25,8 +26,8 @@
                                             </div>
                                             <a href="<?=$websiteUrl?>/anilist/anime?id=<?=$popular['id']?>" class="film-poster"
                                                 title="<?=$title['romaji']?>">
-                                                <img data-src="<?=$popular['image']?>"
-                                                    src="<?=$popular['image']?>"
+                                                <img data-src="https://ik.imagekit.io/<?=$imgk?>/tr:w-300,f-webp/<?=$imgk?>/<?=$popular['image']?>"
+                                                    src="https://ik.imagekit.io/<?=$imgk?>/tr:w-300,f-webp/<?=$imgk?>/<?=$popular['image']?>"
                                                     class="film-poster-img lazyload" alt="Watch free online <?=$title['romaji']?> on animezia">
                                             </a>
                                             <div class="clearfix"></div>

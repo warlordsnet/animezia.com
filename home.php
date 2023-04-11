@@ -190,8 +190,8 @@ require('./_config.php');
                                                 <div class="tick-item tick-eps amp-algn">Episode <?=$recentRelease['episodeNum']?></div>
                                             </div>
                                             <img class="film-poster-img lazyload"
-                                                data-src="<?=$recentRelease['imgUrl']?>"
-                                                src="<?=$recentRelease['imgUrl']?>"
+                                                data-src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$recentRelease['imgUrl']?>"
+                                                src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$recentRelease['imgUrl']?>"
                                                 alt="Watch free online <?=$recentRelease['name']?> on animezia">
                                             <a class="film-poster-ahref"
                                                 href="/watch/<?=$recentRelease['episodeId']?>"
@@ -298,8 +298,8 @@ require('./_config.php');
                                                 <div class="tick-item tick-eps amp-algn">Episode <?=$recentReleaseDub['episodeNum']?></div>
                                             </div>
                                             <img class="film-poster-img lazyload"
-                                                data-src="<?=$recentReleaseDub['imgUrl']?>"
-                                                src="<?=$recentReleaseDub['imgUrl']?>"
+                                                data-src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$recentReleaseDub['imgUrl']?>"
+                                                src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$recentReleaseDub['imgUrl']?>"
                                                 alt="Watch free online <?=$recentReleaseDub['name']?> on animezia">
                                             <a class="film-poster-ahref"
                                                 href="/watch/<?=$recentReleaseDub['episodeId']?>" title="<?=$recentReleaseDub['name']?>"
