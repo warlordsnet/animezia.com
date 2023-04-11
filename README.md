@@ -37,19 +37,35 @@ New source code of animezia.com will not be public anytime soon.
  - 🎉Stream in 1080p, 720p, 480p and 360p.
  - ⚡Supported Devices: PCs, Laptops, Tablets, Android and iOS mobile, smart TVs.
  - 🎨Responsive Design and SEO optimized.
+ - 🏆 Auto Image Optimization to webp. 
  - ⭐Anime Available Based on Genres, Seasons, categories, status, language.
  - 🚀Ready to deploy code.
 
 
 ## Requirements
- - **Before running check if .htaccess file is present in root dir**
-
- - Php environment or Directly Upload the code on php supported hosting (No editing Required Just Upload and Enjoy)
+ - Before running check if `.htaccess file` is present in root dir of your web server.
+ - Follow ** Online Deployment ** procedure from below.
+ - First deploy the <a href="https://github.com/warlordsnet/zia-api" >API REPO</a>. Run It and Update the `$api` variable in `_config.php` with new URL.
+ - Php environment or Directly Upload the code on php supported hosting.
+ - Deploy the <a href="https://github.com/warlordsnet/cdnzia">CDN repo</a> and add it's url in  `_config.php`.
 
  - **To Update Website Info (Website name, logo, favicon, socials url) Edit `_config.php` file**
+ - Sign up on <a href="https://imagekit.io">Imagekit</a> and follow these steps to use it ->
+ **Go to settings**
+![image](https://user-images.githubusercontent.com/125268757/231135267-26a145c8-cb6f-49fc-a055-6db70d4529dd.png)
 
- - First deploy the <a href="https://github.com/warlordsnet/zia-api">API REPO</a>. Run It and Update the `$api` variable in `_config.php` with new URL. 
- - Deploy the <a href="https://github.com/warlordsnet/cdnzia">CDN repo</> and add it's url in  `_config.php`
+Create new origin named - anime. select web proxy option and save.
+![image](https://user-images.githubusercontent.com/125268757/231141699-8963cb08-6298-4278-b5fe-f45223a5b376.png)
+
+Now go to url endpoints section and select existing endpoint, configure it > add existing orogin - anime.
+![image](https://user-images.githubusercontent.com/125268757/231142346-fefaf351-6177-4458-b419-b6f095133640.png)
+
+Now go to developer options and copy your imagekit id.
+![image](https://user-images.githubusercontent.com/125268757/231146646-e53e1eff-3e03-42dd-9838-3e83823a8c8d.png)
+
+- Add your imagekit id in variable `$imgk` of `_config.php`.
+
+<hr />
 
 ## Online Deployment
 
