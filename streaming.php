@@ -480,17 +480,15 @@ $episodelist = $getAnime['episode_id'];
     document.getElementById("srep").click();
   }
 });
-
-
 	
-	const route = window.location ;
-	var isdub = route.route.includes("-dub");
+	/** const route = window.location.href ;
+	var isdub = route.includes("-dub");
 	if ( isdub == true) {
-	var subr = window.location.replace("-dub"," ")
-	sdbtn = document.getElementById("subdub");
+	let subr = window.location.replace("-dub","");
+	let sdbtn = document.querySelector("#subdub");
 	sdbtn.setAttribute("href", subr);
 	sdbtn.innerHTML = "Watch SUB"; 
-	}
+	} */
 
 </script>
                                                     <div class="clearfix"></div>
