@@ -426,8 +426,15 @@ $episodelist = $getAnime['episode_id'];
                                         <div class="ps_-block ps_-block-sub servers-mixed">
                                             <div class="ps__-title"><i class="fas fa-server mr-2"></i>SERVERS:</div>
                                             <div class="ps__-list">
+											<div class="item">
+                                                    <a id="server1" href="https://the.animezia.com/player/v1.php?id=<?=$url?>" target="iframe-to-load" class="btn btn-server active">Server 1</a>
+                                                </div>
                                                 <div class="item">
-                                                    <a id="server1" href="https://animezia.com/player/<?=$url?>" target="iframe-to-load" class="btn btn-server active">Server 1</a>
+                                                    <a id="server2" href="https://animezia.com/player/<?=$url?>" target="iframe-to-load" class="btn btn-server active">Server 2</a>
+                                                </div>
+												
+												<div class="item">
+                                                    <a id="server3" href="https://the.animezia.com/player/v2.php?id=<?=$url?>" target="iframe-to-load" class="btn btn-server active">Server 3</a>
                                                 </div>
                                                 
                                             </div>

@@ -18,7 +18,7 @@ $json = json_decode($json, true);
 foreach((array) $json as $getOngoingSeries) 
 {  
     echo "<url>";
-    echo "<loc>https://{$_SERVER['SERVER_NAME']}".$getOngoingSeries['animeId']."</loc>";
+    echo "<loc>https://{$_SERVER['SERVER_NAME']}".str_replace('category', 'anime', $getOngoingSeries['animeId'])."</loc>";
     echo "<changefreq>daily</changefreq>";
     echo "<priority>0.8000</priority>";
     echo "</url>";

@@ -26,8 +26,8 @@
                                             </div>
                                             <a href="<?=$websiteUrl?>/anilist/anime?id=<?=$popular['id']?>" class="film-poster"
                                                 title="<?=$title['romaji']?>">
-                                                <img data-src="https://ik.imagekit.io/<?=$imgk?>/tr:w-300,f-webp/<?=$imgk?>/<?=$popular['image']?>"
-                                                    src="https://ik.imagekit.io/<?=$imgk?>/tr:w-300,f-webp/<?=$imgk?>/<?=$popular['image']?>"
+                                                <img data-src="https://ik.imagekit.io/<?=$imgk?>/tr:w-300,f-webp/<?=$popular['image']?>"
+                                                    src="https://ik.imagekit.io/<?=$imgk?>/tr:w-300,f-webp/<?=$popular['image']?>"
                                                     class="film-poster-img lazyload" alt="Watch free online <?=$title['romaji']?> on animezia">
                                             </a>
                                             <div class="clearfix"></div>
