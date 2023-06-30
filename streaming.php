@@ -238,15 +238,6 @@ $episodelist = $getAnime['episode_id'];
   }
 });
 	
-	/** const route = window.location.href ;
-	var isdub = route.includes("-dub");
-	if ( isdub == true) {
-	let subr = window.location.replace("-dub","");
-	let sdbtn = document.querySelector("#subdub");
-	sdbtn.setAttribute("href", subr);
-	sdbtn.innerHTML = "Watch SUB"; 
-	} */
-
 </script>
                                                     <div class="clearfix"></div>
                                                 </div>
@@ -325,6 +316,24 @@ $episodelist = $getAnime['episode_id'];
                     </div>
                 </div>
             </div>
+			
+			<script>
+			const button = document.querySelector('#subdub');
+button.addEventListener('click', () => {
+  let currentURL = window.location.href;
+  console.log('Current URL:', currentURL);
+  if (currentURL.includes('dub-episode')) {
+    let newURL = currentURL.replace('-dub', '');
+    console.log('New URL:', newURL);
+    window.location.href = newURL;
+  } else {
+    let newURL = currentURL.replace('-episode', '-dub-episode');
+    console.log('New URL:', newURL);
+    window.location.href = newURL;
+  }
+});
+			</script>
+			
             <div class="share-buttons share-buttons-detail">
             <div class="container">
                 <div class="share-buttons-block">
