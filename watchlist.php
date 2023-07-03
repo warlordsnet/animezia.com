@@ -3,19 +3,9 @@
 <html lang="en">
 
 <head>
-    <title>About us - AnimeZia</title>
+    <title>Wathlist - AnimeZia</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="robots" content="index,follow" />
-    <meta http-equiv="content-language" content="en" />
-    <meta name="description"
-        content="AnimeZia is a Free anime streaming website which you can watch English Subbed and Dubbed Anime online with No Account and Daily update. WATCH NOW!" />
-    <meta name="keywords"
-        content="anime to watch, watch anime,anime online, free anime online, online anime, anime streaming, stream anime online, english anime, english dubbed anime" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="<?=$websiteUrl?>/dmca" />
-    <meta property="og:title" content="DMCA - AnimeZia" />
-    <meta property="og:image" content="<?=$cdn?>/images/banner.webp" />
-    <meta property="og:description"  content="AnimeZia is a Free anime streaming website which you can watch English Subbed and Dubbed Anime online with No Account and Daily update. WATCH NOW!" />
+    <meta name="robots" content="noindex,nofollow" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 
     <link rel="shortcut icon" href="<?=$websiteUrl?>/favicon.ico" type="image/x-icon">
@@ -62,7 +52,7 @@
                         </div>
                         <article class="article-infor">
                             <h1 class="h2-heading">List of anime you bookmarked:</h1>
-							<div class="container">
+							<div id="anime-list" class="container">
     <!-- section where bookmarks will be displayed   -->    
     <div class="bookmarks"></div>
   </div>
@@ -72,6 +62,53 @@
                 
             </div>
         </div>
+		
+		<script>
+		// Retrieve the lists from local storage
+var animeList = JSON.parse(localStorage.getItem('Anime List')) || [];
+
+// Display the lists
+var animeListHtml = '<ul>';
+for (var i = 0; i < animeList.length; i++) {
+    var item = animeList[i];
+    animeListHtml += '<li><a href="' + item.animeUrl + '"><img src="' + item.imgUrl + '">' + item.animeName + '</a> <button onclick="deleteFromPlaylist(\'Anime List\', \'' + item.animeName + '\')">Delete</button></li>';
+}
+animeListHtml += '</ul>';
+document.getElementById('anime-list').innerHTML = animeListHtml;
+</script>
+
+
+<script>
+		function deleteFromPlaylist(listName, animeName) {
+    // Retrieve the current list from local storage
+    var list = JSON.parse(localStorage.getItem(listName)) || [];
+
+    // Find the index of the item to be deleted
+    var index = list.findIndex(function(item) {
+        return item.animeName === animeName;
+    });
+
+    // Remove the item from the list
+    if (index !== -1) {
+        list.splice(index, 1);
+
+        // Save the updated list back to local storage
+        localStorage.setItem(listName, JSON.stringify(list));
+    }
+
+    // Update the display of the list
+    var listHtml = '<ul>';
+    for (var i = 0; i < list.length; i++) {
+        var item = list[i];
+        listHtml += '<li><a href="' + item.animeUrl + '"><img src="' + item.imgUrl + '">' + item.animeName + '</a> <button onclick="deleteFromPlaylist(\'' + listName + '\', \'' + item.animeName + '\')">Delete</button></li>';
+    }
+    listHtml += '</ul>';
+    document.getElementById('anime-list').innerHTML = listHtml;
+}
+
+		</script>
+		
+		
 		<style>
 		/*Styling Bookmarks section*/
   .bookmarks{

@@ -283,6 +283,7 @@ $episodelist = $getAnime['episode_id'];
                                                 title="<?=$getAnime['name']?>" data-jname="<?=$getAnime['name']?>"
                                                 style="opacity: 1;"><?=$getAnime['name']?></a>
                                         </h2>
+										
                                         <div class="film-stats">
                                             <div class="tac tick-item tick-quality">HD</div>
                                             <div class="tac tick-item tick-dub">SUB/DUB</div>
@@ -301,8 +302,11 @@ $episodelist = $getAnime['episode_id'];
                                         </div>
                                         <div class="film-text m-hide mb-3">
 									
-                                                    <a id="subdub" class="btn btn-primary"></a>
-                                      
+                                                    <a id="subdub" class="btn btn-primary">Switch Sub?Dub</a>
+													
+                                      <button onclick="saveToPlaylist('Anime List', '<?=$getAnime['name']?> Ep <?=$getEpisode['ep_num']?>', 'https://the.animezia.com/watch/<?=$url?>', 'https://ik.imagekit.io/<?=$imgk?>/tr:w-100,tr:f-webp/<?=$getAnime['imageUrl']?>')" class="btn btn-radius btn-primary btn-play"><i
+                                            class="fas fa-bookmark mr-2"></i>Watch later</button>
+											
                                             AnimeZia is a site to watch online anime like <strong><?=$getAnime['name']?></strong> online, or you can even watch <strong><?=$getAnime['name']?></strong> in HD quality
                                         </div>
                                         <div class="block"><a href="/anime/<?=$anime?>"
@@ -332,6 +336,30 @@ button.addEventListener('click', () => {
     window.location.href = newURL;
   }
 });
+			</script>
+			
+			<script>
+			function saveToPlaylist(listName, animeName, animeUrl, imgUrl) {
+    // Retrieve the current list from local storage
+    var list = JSON.parse(localStorage.getItem(listName)) || [];
+
+    // Check if the item already exists in the list
+    var exists = list.some(function(item) {
+        return item.animeName === animeName;
+    });
+
+    // Add the new item to the list if it doesn't already exist
+    if (!exists) {
+        list.push({
+            animeName: animeName,
+            animeUrl: animeUrl,
+            imgUrl: imgUrl
+        });
+
+        // Save the updated list back to local storage
+        localStorage.setItem(listName, JSON.stringify(list));
+    }
+}
 			</script>
 			
             <div class="share-buttons share-buttons-detail">
