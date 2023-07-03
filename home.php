@@ -148,11 +148,8 @@ require('./_config.php');
                 </div>
             </div>
         </div>
-        
-
-        <div id="anime-featured">
-            <?php include('./_php/anime-featured.php')?>
-        </div>
+ 
+	   
         <div id="main-wrapper">
             <div class="container">
                 <div id="main-content">
