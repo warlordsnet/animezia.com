@@ -52,9 +52,19 @@
                                 <div class="film-buttons">
                                     <a href="<?=$websiteUrl?>/watch/<?php foreach(array_slice($episodelist, 0, 1) as $episode1) {?><?=$episode1['id']?><?php } ?>" class="btn btn-radius btn-primary btn-play"><i
                                             class="fas fa-play mr-2"></i>Watch now</a>
+											
+											<button id="save-to-playlist-button" onclick="saveToPlaylist('Anime List', '<?=$title['romaji']?>', 'https://the.animezia.com/anilist/anime?id=<?=$id?>', 'https://ik.imagekit.io/<?=$imgk?>/tr:w-100,tr:f-webp/<?=$getAnime['image']?>');checkIfBookmarked('Anime List', '<?=$title['romaji']?>')" class="btn btn-radius btn-primary btn-play"><i
+                                            class="fas fa-bookmark mr-2"></i>Watch later</button>
+											
                                             <div class="dr-fav" id="watch-list-content"><a target="_blank" href="https://list.animezia.com/search/anime/<?=$id?>"><i class="fas fa-list mr-2"></i>ListZia</a></div>
                                 </div>
                                 <?php } ?>
+								<script>
+								window.onload = function() {
+                                console.log('window.onload called');
+                                checkIfBookmarked('Anime List', '<?=$getAnime['name']?>');
+                                  };
+								</script>
                                 <div class="film-description m-hide">
                                     <div class="text"><?=$getAnime['description']?></div>
                                 </div>

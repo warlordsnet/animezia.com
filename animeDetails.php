@@ -137,10 +137,17 @@ $episodelist = $getAnime['episode_id'];
                                     <a href="/watch/<?php foreach(array_slice($episodelist, 0, 1) as $episode1) {?><?=$episode1['episodeId']?><?php } ?>" class="btn btn-radius btn-primary btn-play"><i
                                             class="fas fa-play mr-2"></i>Watch now</a>
 											
-									<button onclick="saveToPlaylist('Anime List', '<?=$getAnime['name']?>', 'https://the.animezia.com/anime/<?=$url?>', 'https://ik.imagekit.io/<?=$imgk?>/tr:w-100,tr:f-webp/<?=$getAnime['imageUrl']?>')" class="btn btn-radius btn-primary btn-play"><i
+									<button onclick="saveToPlaylist('Anime List', '<?=$getAnime['name']?>', 'https://the.animezia.com/anime/<?=$url?>', 'https://ik.imagekit.io/<?=$imgk?>/tr:w-100,tr:f-webp/<?=$getAnime['imageUrl']?>');checkIfBookmarked('Anime List', '<?=$getAnime['name']?>')" id="save-to-playlist-button" class="btn btn-primary"><i
                                             class="fas fa-bookmark mr-2"></i>Watch later</button>		
                                 </div>
                                 <?php } ?>
+								
+								<script>
+								window.onload = function() {
+                                console.log('window.onload called');
+                                checkIfBookmarked('Anime List', '<?=$getAnime['name']?>');
+                                  };
+								</script>
                                 <div class="film-description m-hide">
                                     <div class="text"><?=$getAnime['synopsis']?></div>
                                 </div>
@@ -192,29 +199,6 @@ $episodelist = $getAnime['episode_id'];
                 </div>
             </div>
 			
-			<script>
-			function saveToPlaylist(listName, animeName, animeUrl, imgUrl) {
-    // Retrieve the current list from local storage
-    var list = JSON.parse(localStorage.getItem(listName)) || [];
-
-    // Check if the item already exists in the list
-    var exists = list.some(function(item) {
-        return item.animeName === animeName;
-    });
-
-    // Add the new item to the list if it doesn't already exist
-    if (!exists) {
-        list.push({
-            animeName: animeName,
-            animeUrl: animeUrl,
-            imgUrl: imgUrl
-        });
-
-        // Save the updated list back to local storage
-        localStorage.setItem(listName, JSON.stringify(list));
-    }
-}
-			</script>
 			
             <div class="container">
                 <div id="main-content">

@@ -304,7 +304,7 @@ $episodelist = $getAnime['episode_id'];
 									
                                                     <a id="subdub" class="btn btn-primary">Switch Sub?Dub</a>
 													
-                                      <button onclick="saveToPlaylist('Anime List', '<?=$getAnime['name']?> Ep <?=$getEpisode['ep_num']?>', 'https://the.animezia.com/watch/<?=$url?>', 'https://ik.imagekit.io/<?=$imgk?>/tr:w-100,tr:f-webp/<?=$getAnime['imageUrl']?>')" class="btn btn-radius btn-primary btn-play"><i
+                                      <button id="save-to-playlist-button" onclick="saveToPlaylist('Anime List', '<?=$getAnime['name']?> Ep <?=$getEpisode['ep_num']?>', 'https://the.animezia.com/watch/<?=$url?>', 'https://ik.imagekit.io/<?=$imgk?>/tr:w-100,tr:f-webp/<?=$getAnime['imageUrl']?>');checkIfBookmarked('Anime List', '<?=$getAnime['name']?>')" class="btn btn-radius btn-primary btn-play"><i
                                             class="fas fa-bookmark mr-2"></i>Watch later</button>
 											
                                             AnimeZia is a site to watch online anime like <strong><?=$getAnime['name']?></strong> online, or you can even watch <strong><?=$getAnime['name']?></strong> in HD quality
@@ -336,31 +336,13 @@ button.addEventListener('click', () => {
     window.location.href = newURL;
   }
 });
-			</script>
+
+window.onload = function() {
+ console.log('window.onload called');
+checkIfBookmarked('Anime List', '<?=$getAnime['name']?>');
+ };
+         </script>
 			
-			<script>
-			function saveToPlaylist(listName, animeName, animeUrl, imgUrl) {
-    // Retrieve the current list from local storage
-    var list = JSON.parse(localStorage.getItem(listName)) || [];
-
-    // Check if the item already exists in the list
-    var exists = list.some(function(item) {
-        return item.animeName === animeName;
-    });
-
-    // Add the new item to the list if it doesn't already exist
-    if (!exists) {
-        list.push({
-            animeName: animeName,
-            animeUrl: animeUrl,
-            imgUrl: imgUrl
-        });
-
-        // Save the updated list back to local storage
-        localStorage.setItem(listName, JSON.stringify(list));
-    }
-}
-			</script>
 			
             <div class="share-buttons share-buttons-detail">
             <div class="container">
