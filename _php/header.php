@@ -12,9 +12,9 @@
     <div class="sb-setting">
         <div class="header-setting">
 		<div class="hs-toggles">
-                    <a href="/anime" class="hst-item" data-toggle="tooltip" data-original-title="Select Anime List">
+                    <a href="/watchlist" class="hst-item" data-toggle="tooltip" data-original-title="Select Anime List">
                         <div class="hst-icon"><i class="fas fa-list"></i></div>
-                        <div class="name"><span>Anime</span></div>
+                        <div class="name"><span>WatchList</span></div>
                     </a>
                     <a href="/popular" class="hst-item" data-toggle="tooltip" data-original-title="Popular Anime List">
                         <div class="hst-icon"><i class="fas fa-star"></i></div>
