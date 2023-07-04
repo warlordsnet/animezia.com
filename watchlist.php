@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Wathlist - AnimeZia</title>
+    <title>Watchlist - AnimeZia</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="robots" content="noindex,nofollow" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
@@ -75,10 +75,7 @@ for (var i = 0; i < animeList.length; i++) {
 }
 animeListHtml += '</ul>';
 document.getElementById('anime-list').innerHTML = animeListHtml;
-</script>
 
-
-<script>
 		function deleteFromPlaylist(listName, animeName) {
     // Retrieve the current list from local storage
     var list = JSON.parse(localStorage.getItem(listName)) || [];

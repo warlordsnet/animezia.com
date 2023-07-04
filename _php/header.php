@@ -188,19 +188,19 @@
         </div>
         <div class="header-setting">
             <div class="hs-toggles">
-                <a href="<?=$websiteUrl?>/anime" class="hst-item" data-toggle="tooltip" data-original-title="Select Anime List">
+                <a href="/watchlist" class="hst-item" data-toggle="tooltip" data-original-title="Select Anime List">
                     <div class="hst-icon"><i class="fas fa-list"></i></div>
-                    <div class="name"><span>Anime</span></div>
+                    <div class="name"><span>watchlist</span></div>
                 </a>
-                <a href="<?=$websiteUrl?>/popular" class="hst-item" data-toggle="tooltip" data-original-title="Popular Anime List">
+                <a href="/popular" class="hst-item" data-toggle="tooltip" data-original-title="Popular Anime List">
                     <div class="hst-icon"><i class="fas fa-star"></i></div>
                     <div class="name"><span>Popular</span></div>
                 </a>
-                <a href="<?=$websiteUrl?>/type/movies" class="hst-item" data-toggle="tooltip" data-original-title="Anime Movies">
+                <a href="/type/movies" class="hst-item" data-toggle="tooltip" data-original-title="Anime Movies">
                     <div class="hst-icon"><i class="fas fa-film"></i></div>
                     <div class="name"><span>Movie</span></div>
                 </a>
-                <a href="<?=$websiteUrl?>/anilist/random" class="hst-item" data-toggle="tooltip" data-original-title="Select Random Anime">
+                <a href="/anilist/random" class="hst-item" data-toggle="tooltip" data-original-title="Select Random Anime">
                     <div class="hst-icon"><i class="fas fa-random"></i></div>
                     <div class="name"><span>Random</span></div>
                 </a>
