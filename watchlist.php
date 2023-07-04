@@ -71,7 +71,7 @@ var animeList = JSON.parse(localStorage.getItem('Anime List')) || [];
 var animeListHtml = '<ul>';
 for (var i = 0; i < animeList.length; i++) {
     var item = animeList[i];
-    animeListHtml += '<li><a href="' + item.animeUrl + '"><img src="' + item.imgUrl + '">' + item.animeName + '</a> <button onclick="deleteFromPlaylist(\'Anime List\', \'' + item.animeName + '\')">Delete</button></li>';
+    animeListHtml += '<li><img src="' + item.imgUrl + '"><a href="' + item.animeUrl + '">' + item.animeName + '</a> <button class="btn-class" onclick="deleteFromPlaylist(\'Anime List\', \'' + item.animeName + '\')"><i class="fa-solid fa-trash-can"></i> Delete</button></li>';
 }
 animeListHtml += '</ul>';
 document.getElementById('anime-list').innerHTML = animeListHtml;
@@ -97,7 +97,7 @@ document.getElementById('anime-list').innerHTML = animeListHtml;
     var listHtml = '<ul>';
     for (var i = 0; i < list.length; i++) {
         var item = list[i];
-        listHtml += '<li><a href="' + item.animeUrl + '"><img src="' + item.imgUrl + '">' + item.animeName + '</a> <button onclick="deleteFromPlaylist(\'' + listName + '\', \'' + item.animeName + '\')">Delete</button></li>';
+        listHtml += '<li><img src="' + item.imgUrl + '"><a href="' + item.animeUrl + '">' + item.animeName + '</a> <button class="btn-class" onclick="deleteFromPlaylist(\'' + listName + '\', \'' + item.animeName + '\')"><i class="fa-solid fa-trash-can"></i> Delete</button></li>';
     }
     listHtml += '</ul>';
     document.getElementById('anime-list').innerHTML = listHtml;
@@ -107,47 +107,92 @@ document.getElementById('anime-list').innerHTML = animeListHtml;
 		
 		
 		<style>
-		/*Styling Bookmarks section*/
-  .bookmarks{
-    width: 100%;
-    background-color: #555555;
-    padding: 20px;
+/* Styling Bookmarks section */
+#anime-list {}
+
+#anime-list ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap; /* Added flex-wrap property */
+  margin: 0;
+  padding-inline-start: 0px;
+}
+
+#anime-list ul li {
+  background: #1D1E22;
+  display: flex;
+  flex-direction: column;
+  width: 18%;
+  height: fit-content;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.5), -4px -4px 16px rgba(255, 255, 255, 0.05);
+  position: relative;
+  margin: 10px;
+}
+
+#anime-list ul li a {
+  margin: 1rem;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#anime-list ul li img {
+  width: auto;
+  height: 150px;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.btn-class {
+  --background: #08ebfe;
+  --text: #1D1E22;
+  --icon: #1D1E22;
+  display: flex;
+  align-items: center;
+  outline: none;
+  cursor: pointer;
+  border: 0;
+  min-width: 113px;
+  padding: 5px 10px 5px 6px;
+  border-radius: 11px;
+  line-height: 24px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 12px;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--text);
+  background: var(--b, var(--background));
+}
+
+.btn-class i {
+  margin-right: 5px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  #anime-list ul li {
+    width: 43%; /* Set the width to 100% to make it a single column */
   }
-  .bookmark{
-    display: flex;
-    align-items: center;
-    width: 300px;
-    height: 40px;
-    padding: 5px 20px;
-    background-color: #FAFAFA;
-    margin-bottom: 10px;
-    background-color:  #333333;
+  #anime-list ul li{
+	  padding:10px;
   }
-  .bookmark span{
-    flex: 1;
-    font-weight: bold;
-    letter-spacing: 1.5px;
-    color: #fff;
+  #anime-list ul li img{
+	  height:160px;
   }
-  .bookmark .visit{
-    width: 50px;
-    height: 25px;
-    line-height: 25px;
-    text-align: center;
-    background-color: #47CF73;
-    color: #000;
-    border-radius: 5px;
-    margin: 0 5px;
+  #anime-list ul li a{
+	  font-size:small;
+	  margin:5px;
   }
-  .bookmark .delete{
-    width: 60px;
-    height: 25px;
-    line-height: 25px;
-    text-align: center;
-    background-color: #F44336;
-    border-radius: 5px;
-  }
-		</style>
+}
+</style>
+
         <?php include("./_php/footer.php"); ?>
     </div>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
