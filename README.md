@@ -34,6 +34,7 @@ New source code of animezia.com will not be public anytime soon.
  - ✔Requires no database.
  - ✨No Annoying Video Ads.
  - 🎁Recent released, popular, sub, sub, trending, A to Z list.
+ - ✔WatchList localstorage functions.
  - 🎉Stream in 1080p, 720p, 480p and 360p.
  - ⚡Supported Devices: PCs, Laptops, Tablets, Android and iOS mobile, smart TVs.
  - 🎨Responsive Design and SEO optimized.
