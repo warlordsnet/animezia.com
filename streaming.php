@@ -213,32 +213,7 @@ $episodelist = $getAnime['episode_id'];
     </button>
   </form>
 </div>
-<script>
- function reload() {
-                document.getElementById('iframeid').src += '';
-            }
-			
-  function numberOnly(id) {
-    var element = document.getElementById(id);
-    element.value = element.value.replace(/[^0-9]/gi, "");
-  }
 
-  function epenter() {
-    var x = document.getElementById("search-ep").value;
-    if (x != "") {
-    var numb = window.location.href.length - window.location.href.lastIndexOf("-") - 1;
-    var newurl = window.location.href.slice(0, -numb) + x;
-    location.replace(newurl);
-    };
-  }
-  document.getElementById("search-ep").addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    document.getElementById("srep").click();
-  }
-});
-	
-</script>
                                                     <div class="clearfix"></div>
                                                 </div>
                                                 <div id="episodes-page-1" class="ss-list ss-list-min" data-page="1"
@@ -304,7 +279,7 @@ $episodelist = $getAnime['episode_id'];
 									
                                                     <a id="subdub" class="btn btn-primary">Switch Sub?Dub</a>
 													
-                                      <button id="save-to-playlist-button" onclick="saveToPlaylist('Anime List', '<?=$getAnime['name']?> Ep <?=$getEpisode['ep_num']?>', 'https://the.animezia.com/watch/<?=$url?>', 'https://ik.imagekit.io/<?=$imgk?>/tr:w-100,tr:f-webp/<?=$getAnime['imageUrl']?>');checkIfBookmarked('Anime List', '<?=$getAnime['name']?>')" class="btn btn-radius btn-primary btn-play"><i
+                                      <button id="save-to-playlist-button" onclick="saveToPlaylist('Anime List', '<?=$getAnime['name']?> Ep <?=$getEpisode['ep_num']?>', 'https://the.animezia.com/watch/<?=$url?>', 'https://ik.imagekit.io/<?=$imgk?>/tr:w-100,tr:f-webp/<?=$getAnime['imageUrl']?>');checkIfBookmarked('Anime List', '<?=$getAnime['name']?> Ep <?=$getEpisode['ep_num']?>')" class="btn btn-radius btn-primary btn-play"><i
                                             class="fas fa-bookmark mr-2"></i>Watch later</button>
 											
                                             AnimeZia is a site to watch online anime like <strong><?=$getAnime['name']?></strong> online, or you can even watch <strong><?=$getAnime['name']?></strong> in HD quality
@@ -337,11 +312,34 @@ button.addEventListener('click', () => {
   }
 });
 
-window.onload = function() {
+function reload() {
+                document.getElementById('iframeid').src += '';
+            }
+			
+  function numberOnly(id) {
+    var element = document.getElementById(id);
+    element.value = element.value.replace(/[^0-9]/gi, "");
+  }
+
+  function epenter() {
+    var x = document.getElementById("search-ep").value;
+    if (x != "") {
+    var numb = window.location.href.length - window.location.href.lastIndexOf("-") - 1;
+    var newurl = window.location.href.slice(0, -numb) + x;
+    location.replace(newurl);
+    };
+  }
+  document.getElementById("search-ep").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("srep").click();
+  }
+});
+	window.onload = function() {
  console.log('window.onload called');
-checkIfBookmarked('Anime List', '<?=$getAnime['name']?>');
+checkIfBookmarked('Anime List', '<?=$getAnime['name']?> Ep <?=$getEpisode['ep_num']?>');
  };
-         </script>
+	</script>
 			
 			
             <div class="share-buttons share-buttons-detail">

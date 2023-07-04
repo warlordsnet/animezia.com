@@ -62,7 +62,7 @@
 								<script>
 								window.onload = function() {
                                 console.log('window.onload called');
-                                checkIfBookmarked('Anime List', '<?=$getAnime['name']?>');
+                                checkIfBookmarked('Anime List', '<?=$title['romaji']?>');
                                   };
 								</script>
                                 <div class="film-description m-hide">
