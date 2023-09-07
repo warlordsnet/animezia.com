@@ -9,7 +9,7 @@ RewriteRule ^watch/([a-zA-Z0-9-=_]+) streaming.php
 RewriteRule ^sub-category/([a-zA-Z0-9-=_]+) sub-category/id.php
 RewriteRule ^genre/([a-zA-Z0-9-=_]+) genre/id.php
 RewriteRule ^az-list/([A-Z]) az-list/id.php
-
+RewriteRule ^home home.php
 
 RewriteRule ^sitemaps/recentCN-sitemap.xml sitemaps/recentCN-sitemap.php
 RewriteRule ^sitemaps/recentDUB-sitemap.xml sitemaps/recentDUB-sitemap.php
