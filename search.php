@@ -114,7 +114,7 @@ if ($page == ""){
                                                 src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$cdn?>/images/no_poster.jpg"
                                                 alt="<?=$search['name']?>">
                                             <a class="film-poster-ahref"
-                                                href="/anime/<?=$search['anime_id']?>"
+                                                href="/anime/<?=$search['anime_id']-episode-1?>"
                                                 title="<?=$search['name']?>"
                                                 data-jname="<?=$search['name']?>"><i class="fas fa-play"></i></a>
                                         </div>
