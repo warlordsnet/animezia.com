@@ -8,7 +8,7 @@ $contactEmail = ""; // Contact Email, put your own.
 
 
 //Donate 
-$donate = "https://www.ko-fi.com/warlords";
+$donate = "https://coindrop.to/animezia";
 
 // Socials 
 $telegram = "https://telegram.me/anime_arsenal"; // telegram
@@ -17,7 +17,7 @@ $redit = "#"; // Reddit
 $twitter = "#"; // Twitter
  
 // *** IMPORTANT ***  
-// remove slash - "/" from links if present.  
+// remove last slash - "/" from links if present.  
 
 $disqus = "https://watchzia.disqus.com"; // Disqus make your own
 
@@ -28,7 +28,7 @@ $api =""; // api repo https://github.com/warlordsnet/zia-api
 
 $imgk = ""; // your imagekit id, make your own. instructions in readme.
 
-$ani = =""; // api repo https://github.com/warlordsnet/consu-api
+$ani =""; // api repo https://github.com/warlordsnet/consu-api
 
 $banner = "https://cdnzia.pages.dev/images/banner.webp";  //Banner use your own
 ?>

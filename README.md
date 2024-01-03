@@ -32,7 +32,7 @@
   - [Vercel](#vercel)
   - [Render](#render)
   - [Railway](#railway)
--[sponsor](#sponsor)
+  -[sponsor](#sponsor)
 
 ## Note
 
@@ -118,7 +118,7 @@ Once you have purchased Cpanel from hosting provider then follow these:
  - Upload the files of this repo in the public_html directory.
  - configure domains from cpanel and site is ready ✨
 
-## Local Deployment
+## Locally
 
 First download the repository using. After cloning, change the repo name to your site name.
 ```
