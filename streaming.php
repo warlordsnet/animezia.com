@@ -277,10 +277,13 @@ $episodelist = $getAnime['episode_id'];
                                         </div>
                                         <div class="film-text m-hide mb-3">
 									
-                                                    <a id="subdub" class="btn btn-primary">Switch Sub?Dub</a>
+                                                    <a id="subdub" class="btn btn-primary">Switch Sub/Dub</a>
+                                             <br></br>
 													
-                                      <button id="save-to-playlist-button" onclick="saveToPlaylist('Anime List', '<?=$getAnime['name']?> Ep <?=$getEpisode['ep_num']?>', 'https://the.animezia.com/watch/<?=$url?>', 'https://ik.imagekit.io/<?=$imgk?>/tr:w-100,tr:f-webp/<?=$getAnime['imageUrl']?>');checkIfBookmarked('Anime List', '<?=$getAnime['name']?> Ep <?=$getEpisode['ep_num']?>')" class="btn btn-radius btn-primary btn-play"><i
+                                      <button onclick="saveToPlaylist('Anime List', '<?=$getAnime['name']?>', 'https://rawflyanime.com/anime/<?=$url?>', 'https://ik.imagekit.io/<?=$imgk?>/tr:w-100,tr:f-webp/<?=$getAnime['imageUrl']?>');checkIfBookmarked('Anime List', '<?=$getAnime['name']?>')" id="save-to-playlist-button" class="btn btn-primary"><i
                                             class="fas fa-bookmark mr-2"></i>Watch later</button>
+											<br>
+											</br>
 											
                                             AnimeZia is a site to watch online anime like <strong><?=$getAnime['name']?></strong> online, or you can even watch <strong><?=$getAnime['name']?></strong> in HD quality
                                         </div>
