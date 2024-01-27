@@ -277,10 +277,10 @@ $episodelist = $getAnime['episode_id'];
                                         </div>
                                         <div class="film-text m-hide mb-3">
 									
-                                                    <a id="subdub" class="btn btn-primary">Switch Sub/Dub</a>
+                                                    <a id="subdub" class="btn btn-radius btn-primary">Switch Sub/Dub</a>
                                              <br></br>
 													
-                                      <button onclick="saveToPlaylist('Anime List', '<?=$getAnime['name']?>', 'https://rawflyanime.com/anime/<?=$url?>', 'https://ik.imagekit.io/<?=$imgk?>/tr:w-100,tr:f-webp/<?=$getAnime['imageUrl']?>');checkIfBookmarked('Anime List', '<?=$getAnime['name']?>')" id="save-to-playlist-button" class="btn btn-primary"><i
+                                      <button onclick="saveToPlaylist('Anime List', '<?=$getAnime['name']?>', 'https://the.animezia.com/anime/<?=$url?>', 'https://ik.imagekit.io/<?=$imgk?>/tr:w-100,tr:f-webp/<?=$getAnime['imageUrl']?>');checkIfBookmarked('Anime List', '<?=$getAnime['name']?>')" id="save-to-playlist-button" class="btn btn-primary"><i
                                             class="fas fa-bookmark mr-2"></i>Watch later</button>
 											<br>
 											</br>
