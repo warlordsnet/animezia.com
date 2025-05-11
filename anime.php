@@ -89,18 +89,15 @@ if ($page == ""){
                                 <div class="film_list-wrap">
 
                                 <?php 
-								
-								$ch = curl_init();
-								  curl_setopt($ch, CURLOPT_URL, "$api/animeList?page=$page");
-								  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-								  curl_setopt($ch, CURLOPT_HEADER, FALSE);
-								  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
-								  $response = curl_exec($ch);
-								  $json = json_decode($response, true); 
-								  
-                               // $json = file_get_contents("$api/animeList?page=$page");
-                               // $json = json_decode($json, true);
-                                foreach((array) $json as $key => $az) { ?>
+                                    // Fetch anime list and pagination data from the new API
+                                    $ch = curl_init();
+                                    curl_setopt($ch, CURLOPT_URL, "$api/az-list?page=$page");
+                                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+                                    curl_setopt($ch, CURLOPT_HEADER, FALSE);
+                                    curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
+                                    $response = curl_exec($ch);
+                                    $animeListData = json_decode($response, true); 
+                                foreach((array) $animeListData['results']['data'] as $key => $anime) { ?>
                                     <div class="flw-item">
                                         <div class="film-detail">
                                             <h3 class="film-name">
@@ -108,10 +105,10 @@ if ($page == ""){
                                                     href="/anime/<?=$az['animeId']?>" title="<?=$az['animeTitle']?>"
                                                     data-jname="<?=$az['animeTitle']?>"><?=$az['animeTitle']?></a>
                                             </h3>
-                                            <div class="fd-infor">
+                                           <div class="fd-infor">
                                                 <span class="fdi-item"># <?php echo (136 * ($page - 1)) + $key+1 ?></span>
                                                 <span class="dot"></span>
-                                                <span class="fdi-item"><?php $str = $az['animeTitle'];
+                                                <span class="fdi-item"><?php $str = $anime['title'];
                                                 $last_word_start = strrpos ( $str , " ") + 1;
                                                 $last_word_end = strlen($str) - 1;
                                                 $last_word = substr($str, $last_word_start, $last_word_end);
@@ -123,7 +120,7 @@ if ($page == ""){
                                     </div>
                                 <?php } curl_close($ch); ?>
                                   
-                                </div>
+                               </div>
                                 <div class="clearfix"></div>
                                 <style>
                                     .cus_pagi {
@@ -151,19 +148,12 @@ if ($page == ""){
                                 <div class="pagination">
                                     <nav>
                                         <ul class="ulclear az-list">
-                                        <?php 
-										$ch = curl_init();
-								  curl_setopt($ch, CURLOPT_URL, "$api/anime-list-page?page=$page");
-								  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-								  curl_setopt($ch, CURLOPT_HEADER, FALSE);
-								  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
-								  $AZPage = curl_exec($ch);
-								  $AZPage = json_decode($AZPage, true); 
-								  
-                                           //$AZPage = file_get_contents("$api/anime-list-page?page=$page");
-                                          // $AZPage = json_decode($AZPage, true); 
-                                          { ?>
-                                             <?=$AZPage['pagination']; ?>
+                                        <?php
+                                            $totalPages = $animeListData['results']['totalPages'];
+                                            for ($i = 1; $i <= $totalPages; $i++) {
+                                        ?>
+                                                <li><a href="/anime?page=<?=$i?>" class="page-link <?php if ($i == $page) echo 'active'; ?>"><?=$i?></a></li>
+                                        <?php } ?>
                                            <?php } curl_close($ch); ?>
                                         </ul>
                                     </nav>

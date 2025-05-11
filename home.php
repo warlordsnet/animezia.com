@@ -168,52 +168,39 @@ require('./_config.php');
                             <div class="block_area-content block_area-list film_list film_list-grid">
                                 <div class="film_list-wrap">
 
-                                <?php 
+                                <?php
+								// The home API endpoint provides the latest episodes
 								$ch = curl_init();
-								  curl_setopt($ch, CURLOPT_URL, "$api/recent-release?type=1&page=1");
-								  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-								  curl_setopt($ch, CURLOPT_HEADER, FALSE);
-								  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
-								  $response = curl_exec($ch);
-								  $json = json_decode($response, true);
-                                
-                                foreach((array) $json as $recentRelease) { ?>
+								curl_setopt($ch, CURLOPT_URL, "$api/");
+								curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+								curl_setopt($ch, CURLOPT_HEADER, FALSE);
+								curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
+								$response = curl_exec($ch);
+								$homeData = json_decode($response, true); // Store the entire home response
+								curl_close($ch);
+
+                                // Iterate over latest episodes
+                                foreach((array) $homeData['results']['latestEpisode'] as $latestEpisode) { ?>
                                     <div class="flw-item">
                                         <div class="film-poster">
-                                            <div class="tick ltr">
-                                                <div class="tick-item-sub  tick-eps amp-algn"><?=$recentRelease['subOrDub']?></div>
-                                            </div>
-                                            <div class="tick rtl">
-                                                <div class="tick-item tick-eps amp-algn">Episode <?=$recentRelease['episodeNum']?></div>
-                                            </div>
-                                            <img class="film-poster-img lazyload"
-                                                data-src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$recentRelease['imgUrl']?>"
-                                                src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$recentRelease['imgUrl']?>"
-                                                alt="Watch free online <?=$recentRelease['name']?> on animezia">
                                             <a class="film-poster-ahref"
-                                                href="/watch/<?=$recentRelease['episodeId']?>"
-                                                title="<?=$recentRelease['name']?>"
-                                                data-jname="<?=$recentRelease['name']?>"><i class="fas fa-play"></i></a>
+                                                href="/animeDetails.php?animeid=<?=$latestEpisode['id']?>"
+                                                title="<?=$latestEpisode['title']?>"><i class="fas fa-play"></i></a>
                                         </div>
                                         <div class="film-detail">
                                             <h3 class="film-name">
-                                                <a
-                                                    href="/watch/<?=$recentRelease['episodeId']?>"
-                                                    title="<?=$recentRelease['name']?>"
-                                                    data-jname="<?=$recentRelease['name']?>"><?=$recentRelease['name']?></a>
+                                                <a href="/animeDetails.php?animeid=<?=$latestEpisode['id']?>" title="<?=$latestEpisode['title']?>"><?=$latestEpisode['title']?></a>
                                             </h3>
                                             <div class="fd-infor">
                                                 <span class="fdi-item">Latest</span>
                                                 <span class="dot"></span>
-                                                <span class="fdi-item"><?=$recentRelease['subOrDub']?></span>
+ <span class="fdi-item"><?=isset($latestEpisode['tvInfo']['sub']) ? 'SUB' : ''?><?=isset($latestEpisode['tvInfo']['dub']) ? 'DUB' : ''?></span>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
 
-                                   <?php } curl_close($ch); ?>
-
-                                    
+                                   <?php } ?>
                                     
                                    
                                 </div>
@@ -275,38 +262,31 @@ require('./_config.php');
                         <div class="tab-content">
                             <div class="block_area-content block_area-list film_list film_list-grid">
                                 <div class="film_list-wrap">
-                                <?php 
-								$ch = curl_init();
-								  curl_setopt($ch, CURLOPT_URL, "$api/recent-release?type=2&page=1");
-								  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-								  curl_setopt($ch, CURLOPT_HEADER, FALSE);
-								  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
-								  $response = curl_exec($ch);
-								  $json = json_decode($response, true);
-                                
-                                foreach((array) $json as $recentReleaseDub) { ?>
-
+                                <?php
+                                // Iterate over the same latest episodes data
+                                foreach((array) $homeData['results']['latestEpisode'] as $latestEpisodeDub) {
+                                    // Check if the episode is dubbed
+                                    if (isset($latestEpisodeDub['tvInfo']['dub'])) {
+                                ?>
                                     <div class="flw-item">
                                         <div class="film-poster">
                                         <div class="tick ltr">
-                                                <div class="tick-item-dub  tick-eps amp-algn"><?=$recentReleaseDub['subOrDub']?></div>
+                                                <div class="tick-item-dub  tick-eps amp-algn">DUB</div>
                                             </div>
                                             <div class="tick rtl">
-                                                <div class="tick-item tick-eps amp-algn">Episode <?=$recentReleaseDub['episodeNum']?></div>
+                                                <div class="tick-item tick-eps amp-algn">Episode <?=$latestEpisodeDub['tvInfo']['episodeInfo']['number']?></div>
                                             </div>
                                             <img class="film-poster-img lazyload"
-                                                data-src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$recentReleaseDub['imgUrl']?>"
-                                                src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$recentReleaseDub['imgUrl']?>"
-                                                alt="Watch free online <?=$recentReleaseDub['name']?> on animezia">
+                                                data-src="<?=$latestEpisodeDub['poster']?>"
+                                                src="<?=$latestEpisodeDub['poster']?>"
+                                                alt="Watch free online <?=$latestEpisodeDub['title']?> on animezia">
                                             <a class="film-poster-ahref"
-                                                href="/watch/<?=$recentReleaseDub['episodeId']?>" title="<?=$recentReleaseDub['name']?>"
-                                                data-jname="<?=$recentReleaseDub['name']?>"><i class="fas fa-play"></i></a>
+                                                href="/animeDetails.php?animeid=<?=$latestEpisodeDub['id']?>" title="<?=$latestEpisodeDub['title']?>"><i class="fas fa-play"></i></a>
                                         </div>
                                         <div class="film-detail">
                                             <h3 class="film-name">
                                                 <a
-                                                    href="/watch/<?=$recentReleaseDub['episodeId']?>" title="<?=$recentReleaseDub['name']?>"
-                                                    data-jname="<?=$recentReleaseDub['name']?>"><?=$recentReleaseDub['name']?></a>
+                                                    href="/animeDetails.php?animeid=<?=$latestEpisodeDub['id']?>" title="<?=$latestEpisodeDub['title']?>"><?=$latestEpisodeDub['title']?></a>
                                             </h3>
                                             <div class="fd-infor">
                                                 <span class="fdi-item">Latest</span>
@@ -316,8 +296,8 @@ require('./_config.php');
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
-
-                                <?php } curl_close($ch); ?>
+                                <?php }
+                                } // End foreach and if condition ?>
                                 </div>
                             </div>
                         </div>

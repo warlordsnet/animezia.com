@@ -7,16 +7,16 @@
                                                     style="display:block;">
 
                                                     <?php 
-                                                    foreach ($episodelist as $episodelist) {  ?>
-                                                    <a title="Episode <?=$episodelist['episodeNum']?>"
-                                                        class="ssl-item ep-item <?php if ($getEpisode['ep_num'] === $episodelist['episodeNum']) {echo 'active';}?>"
-                                                        href="/watch/<?=$episodelist['episodeId']?>">
-                                                        <div class="ssli-order" title=""><?=$episodelist['episodeNum']?>
+                                                    foreach ($animeDetails['results']['episodes'] as $episode) {  ?>
+                                                    <a title="Episode <?=$episode['number']?>"
+                                                        class="ssl-item ep-item <?php if ($episodeDetails['results']['number'] === $episode['number']) {echo 'active';}?>"
+                                                        href="/watch/<?=$episode['id']?>">
+                                                        <div class="ssli-order" title=""><?=$episode['number']?>
                                                         </div>
                                                         
                                                       
                                                     </a>
-                                                    <?php } ?>
+                                                    <?php }?>
                                                 </div>
                                             </div>
                                         </div>

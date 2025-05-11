@@ -6,14 +6,16 @@ $page_url=explode('/', $parts['path']);
 $url = $page_url[count($page_url)-1];
 //$url = "naruto";
 
-$getAnime = file_get_contents("$api/getAnime/$url");
-$getAnime = json_decode($getAnime, true);
-$episodelist = $getAnime['episode_id'];
-?>
+// Fetch anime details using curl
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, "$api/anime/$url");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
+$response = curl_exec($ch);
+$animeDetails = json_decode($response, true);
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
-<head>
     <title>Watch <?=$getAnime['name']?> - AnimeZia</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="title" content="Watch <?=$getAnime['name']?> - AnimeZia" />
@@ -80,7 +82,7 @@ $episodelist = $getAnime['episode_id'];
                         <div class="anis-cover-wrap">
                             <div class="anis-cover"
                                 style="background-image: url('<?=$getAnime['imageUrl']?>')"></div>
-                        </div>
+
                         <div class="anis-content">
                             <div class="anisc-poster">
                                 <div class="film-poster">
@@ -107,37 +109,34 @@ $episodelist = $getAnime['episode_id'];
                                                 itemtype="http://schema.org/ListItem"
                                                 class="breadcrumb-item dynamic-name" data-jname="<?=$getAnime['name']?>"
                                                 aria-current="page">
-                                                <a itemprop="item" href="/anime/<?=$url?>"><span itemprop="name"><?=$getAnime['name']?></span></a>
+                                                <a itemprop="item" href="/anime/<?=$url?>"><span itemprop="name"><?=$animeDetails['results']['title']?></span></a>
                                                 <meta itemprop="position" content="3">
                                             </li>
                                         </ol>
                                     </nav>
                                 </div>
-                                <h2 class="film-name dynamic-name" data-jname="<?=$getAnime['name']?>"><?=$getAnime['name']?></h2>
+                                <h2 class="film-name dynamic-name" data-jname="<?=$animeDetails['results']['title']?>"><?=$animeDetails['results']['title']?></h2>
                                 <div class="film-stats">
                                     <div class="tac tick-item tick-quality">HD</div>
                                     <div class="tac tick-item tick-dub">
-                                    <?php $str = $getAnime['name'];
-                                          $last_word_start = strrpos ( $str , " ") + 1;
-                                          $last_word_end = strlen($str) - 1;
-                                          $last_word = substr($str, $last_word_start, $last_word_end);
-                                          if ($last_word == "(Dub)"){echo "DUB";} else {echo "SUB";}
-                                    ?>
+                                        <?php echo ($animeDetails['results']['type'] === 'Dubbed') ? 'DUB' : 'SUB'; ?>
                                     </div>
                                     <span class="dot"></span>
-                                    <span class="item"><?=$getAnime['type']?></span>
+                                    <span class="item"><?=$animeDetails['results']['type']?></span>
 									<span class="dot"></span>
-                                    <span class="item"><?=$getAnime['totalEpisodes']?></span>
+                                    <span class="item">
+                                        <?= $animeDetails['results']['totalEpisodes'] ?? 'N/A' ?> Episodes
+                                    </span>
                                     <div class="clearfix"></div>
-                                </div>
-                                <?php if(count($getAnime['episode_id']) == 0) {
-                                    echo "";
-                                } else { ?>
+                                </div><?php if (isset($animeDetails['results']['episodes']) && count($animeDetails['results']['episodes']) > 0) { ?>
                                 <div class="film-buttons">
-                                    <a href="/watch/<?php foreach(array_slice($episodelist, 0, 1) as $episode1) {?><?=$episode1['episodeId']?><?php } ?>" class="btn btn-radius btn-primary btn-play"><i
-                                            class="fas fa-play mr-2"></i>Watch now</a>
-											
-									<button onclick="saveToPlaylist('Anime List', '<?=$getAnime['name']?>', 'https://the.animezia.com/anime/<?=$url?>', 'https://ik.imagekit.io/<?=$imgk?>/tr:w-100,tr:f-webp/<?=$getAnime['imageUrl']?>');checkIfBookmarked('Anime List', '<?=$getAnime['name']?>')" id="save-to-playlist-button" class="btn btn-primary"><i
+                                    <a href="/watch/<?php
+                                    // Find the first episode ID to link to
+                                    $firstEpisodeId = $animeDetails['results']['episodes'][0]['id'] ?? '';
+                                    echo $firstEpisodeId;
+                                    ?>" class="btn btn-radius btn-primary btn-play"><i
+                                            class="fas fa-play mr-2"></i>Watch now</a>			
+									<button onclick="saveToPlaylist('Anime List', '<?=$animeDetails['results']['title']?>', '<?=$websiteUrl?>/anime/<?=$url?>', 'https://ik.imagekit.io/<?=$imgk?>/tr:w-100,tr:f-webp/<?=$animeDetails['results']['image']?>');checkIfBookmarked('Anime List', '<?=$animeDetails['results']['title']?>')" id="save-to-playlist-button" class="btn btn-primary"><i
                                             class="fas fa-bookmark mr-2"></i>Watch later</button>		
                                 </div>
                                 <?php } ?>
@@ -145,49 +144,41 @@ $episodelist = $getAnime['episode_id'];
 								<script>
 								window.onload = function() {
                                 console.log('window.onload called');
-                                checkIfBookmarked('Anime List', '<?=$getAnime['name']?>');
+                                checkIfBookmarked('Anime List', '<?=$animeDetails['results']['title']?>');
                                   };
 								</script>
                                 <div class="film-description m-hide">
-                                    <div class="text"><?=$getAnime['synopsis']?></div>
+                                    <div class="text"><?= $animeDetails['results']['description'] ?? 'N/A' ?></div>
                                 </div>
                                 <div class="film-text m-hide">AnimeZia is a site to watch online anime like <strong><?=$getAnime['name']?></strong> online, or you can even watch <strong><?=$getAnime['name']?></strong> in HD quality</div>
-                                
+
                             </div>
                             <div class="anisc-info-wrap">
                                 <div class="anisc-info">
                                     <div class="item item-title w-hide">
                                         <span class="item-head">Overview:</span>
-                                        <div class="text"><?=$getAnime['synopsis']?></div>
+                                        <div class="text"><?= $animeDetails['results']['description'] ?? 'N/A' ?></div>
                                     </div>
                                     <div class="item item-title">
-                                        <span class="item-head">Other names:</span> <span class="name"><?=$getAnime['othername']?></span>
-                                    </div>
+                                        <span class="item-head">Other names:</span> <span class="name"><?= $animeDetails['results']['otherName'] ?? 'N/A' ?></span>
                                     <div class="item item-title">
                                         <span class="item-head">Language:</span> 
                                         <span class="name">
-                                            <?php $str = $getAnime['name'];
-                                                $last_word_start = strrpos ( $str , " ") + 1;
-                                                $last_word_end = strlen($str) - 1;
-                                                $last_word = substr($str, $last_word_start, $last_word_end);
-                                                if ($last_word == "(Dub)"){echo "Dub";} else {echo "Sub";}
-                                            ?>
+                                            <?php echo ($animeDetails['results']['type'] === 'Dubbed') ? 'Dub' : 'Sub'; ?>
                                         </span>
                                     </div>
                                     <div class="item item-title">
-                                        <span class="item-head">Episodes:</span> <span class="name"><?php echo count($getAnime['episode_id'])?></span>
+                                        <span class="item-head">Episodes:</span> <span class="name"><?= $animeDetails['results']['totalEpisodes'] ?? 'N/A' ?></span>
+                                    </div>
+                                    <div class="item item-title">                                        <span class="item-head">Release Year:</span> <span class="name"><?=$animeDetails['results']['releaseDate']?></span>
                                     </div>
                                     <div class="item item-title">
-                                        <span class="item-head">Release Year:</span> <span class="name"><?=$getAnime['released']?></span>
-                                    </div>
-                                    <div class="item item-title">
-                                        <span class="item-head">Type:</span> <span class="name"><?=$getAnime['type']?></span>
-                                    </div>
-                                    <div class="item item-title">
-                                        <span class="item-head">Status:</span> <a href="<?php if ($getAnime['status'] == "Completed") {echo "/status/completed";} else {echo "/status/ongoing";}?>"><?=$getAnime['status']?></a>
-                                    </div>
-                                    <div class="item item-list">
-                                        <span class="item-head">Genres:</span> <?php foreach($getAnime['genres'] as $genre) { ?><a href="<?=$websiteUrl?>/genre/<?php $genreUrl = strtolower($genre); echo str_replace(" ","+", $genreUrl);?>"><?=$genre?></a><?php } ?>
+                                        <span class="item-head">Status:</span> <a href="<?php if (($animeDetails['results']['status'] ?? '') == "Completed") {echo "/status/completed";} else {echo "/status/ongoing";}?>"><?= $animeDetails['results']['status'] ?? 'N/A' ?></a>
+                                    </div>                                    
+                                    <div class="item item-list">                                        <span class="item-head">Genres:</span> <?php foreach($animeDetails['results']['genres'] as $genre) { ?><a href="<?=$websiteUrl?>/genre/<?php echo str_replace(" ","+", strtolower($genre));?>"><?=$genre?></a><?php } ?>
+                                        <span class="item-head">Episodes:</span>
+                                        <?php foreach ($animeDetails['results']['episodes'] as $episode) { ?>
+                                            <a href="/watch/<?= $episode['id'] ?>"><?= $episode['number'] ?></a>,
                                     </div>
                                     <div class="film-text w-hide">AnimeZia is a site to watch online anime like <strong><?=$getAnime['name']?></strong> online, or you can even watch <strong><?=$getAnime['name']?></strong> in HD quality</div>
                                 </div>

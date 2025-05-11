@@ -81,17 +81,15 @@ if ($page == ""){
                             <div class="block_area-content block_area-list film_list film_list-grid film_list-wfeature">
                                 <div class="film_list-wrap">
 
-                                <?php 
+                                <?php
+                                // Fetch search results and pagination data from the new API
                                 $ch = curl_init();
-								  curl_setopt($ch, CURLOPT_URL, "$api/search?keyw=$keyword&page=$page");
+								  curl_setopt($ch, CURLOPT_URL, "$api/search/$keyword?page=$page");
 								  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 								  curl_setopt($ch, CURLOPT_HEADER, FALSE);
 								  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
-								  $response = curl_exec($ch);
-								  $results = json_decode($response, true);
-                               // $json = file_get_contents("$api/search?keyw=$keyword&page=$page");
-                               // $results = json_decode($json, true);
-                                foreach((array) $results as $key => $search) { ?>
+								  $searchResults = json_decode(curl_exec($ch), true);
+                                foreach((array) $searchResults['results']['data'] as $search) { ?>
                                     <div class="flw-item">
                                         <div class="film-poster">
                                             <div class="tick ltr">
@@ -107,23 +105,19 @@ if ($page == ""){
                                                 if ($last_word == "(Dub)"){echo "Dub";} else {echo "Sub";}
                                               ?></div>
                                             </div>
-                                            <div class="tick rtl">
-                                            </div>
                                             <img class="film-poster-img lazyload"
-                                                data-src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$search['img_url']?>"
+                                                data-src="<?=$search['poster']?>"
                                                 src="https://ik.imagekit.io/<?=$imgk?>/tr:f-webp/<?=$cdn?>/images/no_poster.jpg"
-                                                alt="<?=$search['name']?>">
+                                                alt="<?=$search['title']?>">
                                             <a class="film-poster-ahref"
-                                                href="/anime/<?=$search['anime_id']?>"
-                                                title="<?=$search['name']?>"
-                                                data-jname="<?=$search['name']?>"><i class="fas fa-play"></i></a>
+                                                href="/anime/<?=$search['id']?>"
+                                                title="<?=$search['title']?>"
+                                                data-jname="<?=$search['title']?>"><i class="fas fa-play"></i></a>
                                         </div>
                                         <div class="film-detail">
                                             <h3 class="film-name">
                                                 <a
-                                                    href="/anime/<?=$search['anime_id']?>"
-                                                    title="<?=$search['name']?>"
-                                                    data-jname="<?=$search['name']?>"><?=$search['name']?></a>
+                                                    href="/anime/<?=$search['id']?>" title="<?=$search['title']?>" data-jname="<?=$search['title']?>"><?=$search['title']?></a>
                                             </h3>
                                             <div class="description"></div>
                                             <div class="fd-infor">
@@ -133,16 +127,9 @@ if ($page == ""){
                                         <div class="clearfix"></div>
                                     </div>
                                     
-                                <?php } curl_close($ch); ?>
-                                    
                                 <?php 
-                                $ch = curl_init();
-								  curl_setopt($ch, CURLOPT_URL, "$api/search?keyw=$keyword");
-								  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-								  curl_setopt($ch, CURLOPT_HEADER, FALSE);
-								  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
-								  $respons = curl_exec($ch);
-								  $jso = json_decode($respons, true);
+                                // Check if no results were found
+                                if (count($searchResults['results']['data']) == 0){ ?>
                                 //$json = file_get_contents("$api/search?keyw=$keyword");
                                // $json = json_decode($json, true);
                                 if (count($jso) == 0){ ?>
@@ -165,17 +152,20 @@ if ($page == ""){
                                             </div>
                                         </div>
                                     </div>
-                                <?php } curl_close($ch); ?>
+                                <?php } ?>
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="pagination">
                                     <nav>
                                         <ul class="ulclear az-list">
-                                        <?php 
-                                        $ch = curl_init();
-								  curl_setopt($ch, CURLOPT_URL, "$api/searchPage?keyw=$keyword&page=$page");
-								  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-								  curl_setopt($ch, CURLOPT_HEADER, FALSE);
+                                        <?php
+                                        // Generate pagination links based on total pages
+                                        $totalPages = $searchResults['results']['totalPages'];
+                                        for ($i = 1; $i <= $totalPages; $i++) {
+                                            echo '<li><a href="/search?keyword=' . urlencode($_GET['keyword']) . '&page=' . $i . '" class="' . ($page == $i ? 'active' : '') . '">' . $i . '</a></li>';
+                                        }
+                                        ?>
+
 								  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
 								  $searchPage = curl_exec($ch);
 								  $searchPage = json_decode($searchPage, true);

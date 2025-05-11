@@ -3,52 +3,25 @@ require('./_config.php');
 $parts=parse_url($_SERVER['REQUEST_URI']); 
 $page_url=explode('/', $parts['path']);
 $url = $page_url[count($page_url)-1];
-//$url = "naruto-episode-2";
+
+// Fetch episode details from the new API
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "$api/getEpisode/$url");
+curl_setopt($ch, CURLOPT_URL, "$api/episode/$url");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 curl_setopt($ch, CURLOPT_HEADER, FALSE);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
-$respo = curl_exec($ch);
-$getEpisode = json_decode($respo, true);
-//$getEpisode = file_get_contents("$api/getEpisode/$url");
-//$getEpisode = json_decode($getEpisode, true);
+$episodeDetails = json_decode(curl_exec($ch), true);
 curl_close($ch);
 
-$anime = $getEpisode['anime_info'];
-$download = str_replace("Gogoanime", "Animezia", $getEpisode['ep_download']);
+// Extract animeId from episode details
+$animeId = $episodeDetails['results']['animeId'] ?? null;
 
+// Fetch anime details from the new API using animeId
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "$api/getAnime/$anime");
+curl_setopt($ch, CURLOPT_URL, "$api/anime/" . ($animeId ? $animeId : '')); // Handle cases where animeId might be missing
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 curl_setopt($ch, CURLOPT_HEADER, FALSE);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
-$respon = curl_exec($ch);
-$getAnime = json_decode($respon, true);
-//$getAnime = file_get_contents("$api/getAnime/$anime");
-//$getAnime = json_decode($getAnime, true);
-curl_close($ch);
-
-$episodelist = $getAnime['episode_id'];
-?>
-<!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
-<head>
-    <title>Watch <?=$getEpisode['animeNameWithEP']?>on AnimeZia</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="title" content="Watch <?=$getEpisode['animeNameWithEP']?> on AnimeZia">
-    <meta name="description" content="<?=substr($getAnime['synopsis'],0, 150)?> ... at <?=$websiteUrl?>">
-    <meta name="keywords" content="AnimeZia, <?=$getEpisode['animeNameWithEP']?>,<?=$getAnime['name']?>, watch anime online, free anime, anime stream, anime hd, english sub">
-    <meta name="charset" content="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="robots" content="index, follow">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta http-equiv="Content-Language" content="en">
-    <meta property="og:title" content="Watch <?=$getEpisode['animeNameWithEP']?>on AnimeZia">
-    <meta property="og:description" content="<?=substr($getAnime['synopsis'],0, 150)?> ... at <?=$websiteUrl?>">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:type" content="website">
+ <meta property="og:type" content="website">
     <meta property="og:site_name" content="AnimeZia">
     <meta property="og:url" content="<?=$websiteUrl?>/anime/<?=$url?>">
     <meta itemprop="image" content="<?=$getAnime['imageUrl']?>">
@@ -100,13 +73,13 @@ $episodelist = $getAnime['episode_id'];
                                         </li>
                                         <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem" class="breadcrumb-item" aria-current="page">
                                             <a itemprop="item" href="/anime/<?=$anime?>"><span itemprop="name"><?=$getAnime['name']?></span></a>
-                                            <meta itemprop="position" content="3">
+ <meta itemprop="position" content="3">
                                         </li>
                                         <li itemprop="itemListElement" itemscope=""
                                             itemtype="http://schema.org/ListItem" class="breadcrumb-item"
                                             aria-current="page">
-                                            <a itemprop="item" href="<?=$websiteUrl?>/watch/<?=$url?>"><span
-                                                    itemprop="name">Episode <?=$getEpisode['ep_num']?></span></a>
+                                            <a itemprop="item" href="<?=$websiteUrl?>/watch/<?=$episodeDetails['results']['id']?>"><span
+                                                    itemprop="name">Episode <?=$episodeDetails['results']['number']?></span></a>
                                             <meta itemprop="position" content="4">
                                         </li>
                                     </ol>
@@ -122,7 +95,7 @@ $episodelist = $getAnime['episode_id'];
                                                 <div class="span3"></div>
                                             </div>
                                         </div>
-                                        <iframe name="iframe-to-load" id="iframeid" src="https://the.animezia.com/player/v1.php?id=<?=$url?>&download=<?=$download?>" frameborder="0" scrolling="no" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+                                        <iframe name="iframe-to-load" id="iframeid" src="<?=$episodeDetails['results']['url']?>" frameborder="0" scrolling="no" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
                                     </div>
                                     <div class="player-controls">
                                         <div class="pc-item pc-resize">
@@ -137,22 +110,31 @@ $episodelist = $getAnime['episode_id'];
                                         </div>
                                         <div class="pc-item pc-download">
                                             <a class="btn btn-sm pc-download"
-                                                href="<?=$download?>"
+                                                href="<?=$episodeDetails['results']['downloadUrl'] ?? ''?>"
                                                 target="_blank"><i class="fas fa-download mr-2"></i>Download</a>
 												<a onclick='reload()' class="btn btn-sm pc-download"><i class="fas fa-refresh mr-2"></i>Refresh</a>
                                         </div>
                                         <div class="pc-right">
-                                        <?php if($getEpisode['prevEpText'] == "") {
-                                            echo "";
-                                        } else { ?>
-                                        <a href="/watch<?=$getEpisode['prevEpLink']?>">
+                                        <?php
+                                        $currentEpisodeNumber = $episodeDetails['results']['number'];
+                                        $episodes = $animeDetails['results']['episodes'] ?? [];
+                                        $prevEpisodeId = null;
+                                        $nextEpisodeId = null;
+
+                                        foreach ($episodes as $index => $episode) {
+                                            if ($episode['number'] == $currentEpisodeNumber) {
+                                                if ($index > 0) $prevEpisodeId = $episodes[$index - 1]['id'];
+                                                if ($index < count($episodes) - 1) $nextEpisodeId = $episodes[$index + 1]['id'];
+                                                break;
+                                            }
+                                        }
+                                        if ($prevEpisodeId !== null) { ?>
+                                        <a href="/watch/<?=$prevEpisodeId?>">
                                             <button class="btn btn-secondary" type="button" style="float:left;height: 32px;font-size: 14px;font-weight: normal;display: block;"><i class="fa fa-step-backward"></i> Previous</button>
                                         </a>&nbsp; 
                                         <?php } ?>
-                                        <?php if($getEpisode['nextEpText'] == "") {
-                                            echo "";
-                                        } else { ?>
-                                        <a href="/watch<?=$getEpisode['nextEpLink']?>">
+                                        <?php if ($nextEpisodeId !== null) { ?>
+ <a href="/watch/<?=$nextEpisodeId?>">
                                             <button class="btn btn-secondary" type="button" style="float:right;height: 32px;font-size: 14px;font-weight: normal;display: block;">Next <i class="fa fa-step-forward"></i></button>
                                         </a>
                                         <?php } ?>
@@ -176,15 +158,15 @@ $episodelist = $getAnime['episode_id'];
                                         <div class="ps_-block ps_-block-sub servers-mixed">
                                             <div class="ps__-title"><i class="fas fa-server mr-2"></i>SERVERS:</div>
                                             <div class="ps__-list">
-											<div class="item">
-                                                    <a id="server1" href="https://the.animezia.com/player/v1.php?id=<?=$url?>&download=<?=$download?>" target="iframe-to-load" class="btn btn-server active">Server 1</a>
+ <div class="item">
+ <a id="server1" href="<?=$episodeDetails['results']['url']?>" target="iframe-to-load" class="btn btn-server active">Server 1</a>
                                                 </div>
-                                                <div class="item">
-                                                    <a id="server2" href="https://animezia.com/player/<?=$url?>" target="iframe-to-load" class="btn btn-server">Server 2</a>
+ <div class="item">
+                                                    <a id="server2" href="https://animezia.com/player/<?=$episodeDetails['results']['id']?>" target="iframe-to-load" class="btn btn-server">Server 2</a>
                                                 </div>
 												
 												<div class="item">
-                                                    <a id="server3" href="https://the.animezia.com/player/v2.php?id=<?=$url?>" target="iframe-to-load" class="btn btn-server">Server 3</a>
+                                                    <a id="server3" href="https://the.animezia.com/player/v2.php?id=<?=$episodeDetails['results']['id']?>" target="iframe-to-load" class="btn btn-server">Server 3</a>
                                                 </div>
                                                 
                                             </div>
@@ -220,11 +202,11 @@ $episodelist = $getAnime['episode_id'];
                                                     style="display:block;">
 
                                                     <?php 
-                                                    foreach ((array )$episodelist as $episodelist) {  ?>
-                                                    <a title="Episode <?=$episodelist['episodeNum']?>" class="ssl-item ep-item <?php if ($getEpisode['ep_num'] === $episodelist['episodeNum']) {echo 'active';}?>"
-                                                        href="/watch/<?=$episodelist['episodeId']?>">
-                                                        <div class="ssli-order" title=""><?=$episodelist['episodeNum']?></div>
-                                                        <div class="ssli-detail">
+                                                    foreach ($animeDetails['results']['episodes'] as $episode) {  ?>
+ <a title="Episode <?=$episode['number']?>" class="ssl-item ep-item <?php if ($episodeDetails['results']['number'] === $episode['number']) {echo 'active';}?>"
+ href="/watch/<?=$episode['id']?>">
+ <div class="ssli-order" title=""><?=$episode['number']?></div>
+ <div class="ssli-detail">
                                                             <div class="ep-name dynamic-name" data-jname="" title="">
                                                             </div>
                                                         </div>
@@ -247,27 +229,27 @@ $episodelist = $getAnime['episode_id'];
                                     <div class="anisc-poster">
                                         <div class="film-poster">
                                             <img src="https://ik.imagekit.io/<?=$imgk?>/tr:w-200,f-webp/<?=$getAnime['imageUrl']?>"
-                                                data-src="https://ik.imagekit.io/<?=$imgk?>/tr:w-200,f-webp/<?=$getAnime['imageUrl']?>"
+ data-src="https://ik.imagekit.io/<?=$imgk?>/tr:w-200,f-webp/<?=$animeDetails['results']['image'] ?? ''?>"
                                                 class="film-poster-img ls-is-cached lazyloaded"
-                                                alt="Watch free online <?=$getAnime['name']?> on animezia">
+                                                alt="Watch free online <?=$animeDetails['results']['title']?> on animezia">
                                         </div>
                                     </div>
                                     <div class="anisc-detail">
                                         <h2 class="film-name">
-                                            <a href="/anime/<?=$anime?>" class="text-white dynamic-name"
-                                                title="<?=$getAnime['name']?>" data-jname="<?=$getAnime['name']?>"
-                                                style="opacity: 1;"><?=$getAnime['name']?></a>
+ <a href="/anime/<?=$animeDetails['results']['id']?>" class="text-white dynamic-name"
+ title="<?=$animeDetails['results']['title']?>" data-jname="<?=$animeDetails['results']['title']?>"
+                                                style="opacity: 1;"><?=$animeDetails['results']['title']?></a>
                                         </h2>
 										
                                         <div class="film-stats">
                                             <div class="tac tick-item tick-quality">HD</div>
                                             <div class="tac tick-item tick-dub">SUB/DUB</div>
                                             <span class="dot"></span>
-                                            <span class="item"><?=$getAnime['status']?></span>
+                                            <span class="item"><?=$animeDetails['results']['status']?></span>
                                             <span class="dot"></span>
-                                            <span class="item"><?=$getAnime['released']?></span>
+                                            <span class="item"><?=$animeDetails['results']['releaseDate']?></span>
                                             <span class="dot"></span>
-                                            <span class="item"><?=$getAnime['othername']?></span>
+                                            <span class="item"><?=$animeDetails['results']['otherName']?></span>
                                             <span class="dot"></span>
                                             <span class="item"><?=$getAnime['type']?></span>
                                             <div class="clearfix"></div>
@@ -280,14 +262,14 @@ $episodelist = $getAnime['episode_id'];
                                                     <a id="subdub" class="btn btn-radius btn-primary">Switch Sub/Dub</a>
                                              <br></br>
 													
-                                      <button onclick="saveToPlaylist('Anime List', '<?=$getAnime['name']?>', 'https://the.animezia.com/anime/<?=$url?>', 'https://ik.imagekit.io/<?=$imgk?>/tr:w-100,tr:f-webp/<?=$getAnime['imageUrl']?>');checkIfBookmarked('Anime List', '<?=$getAnime['name']?>')" id="save-to-playlist-button" class="btn btn-primary"><i
+                                      <button onclick="saveToPlaylist('Anime List', '<?=$animeDetails['results']['title']?>', 'https://the.animezia.com/anime/<?=$url?>', 'https://ik.imagekit.io/<?=$imgk?>/tr:w-100,tr:f-webp/<?=$animeDetails['results']['image']?>');checkIfBookmarked('Anime List', '<?=$animeDetails['results']['title']?>')" id="save-to-playlist-button" class="btn btn-primary"><i
                                             class="fas fa-bookmark mr-2"></i>Watch later</button>
 											<br>
 											</br>
 											
                                             AnimeZia is a site to watch online anime like <strong><?=$getAnime['name']?></strong> online, or you can even watch <strong><?=$getAnime['name']?></strong> in HD quality
                                         </div>
-                                        <div class="block"><a href="/anime/<?=$anime?>"
+                                        <div class="block"><a href="/anime/<?=$animeDetails['results']['id']?>"
                                                 class="btn btn-xs btn-light"><i class="fas fa-book-open mr-2"></i> View detail</a></div>
                                         
                                     </div>
@@ -340,7 +322,7 @@ function reload() {
 });
 	window.onload = function() {
  console.log('window.onload called');
-checkIfBookmarked('Anime List', '<?=$getAnime['name']?> Ep <?=$getEpisode['ep_num']?>');
+ checkIfBookmarked('Anime List', '<?=$animeDetails['results']['title']?> Ep <?=$episodeDetails['results']['number']?>');
  };
 	</script>
 			
