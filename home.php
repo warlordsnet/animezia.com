@@ -133,21 +133,485 @@ require('./_config.php');
         </div>
         
         <?php include('./_php/trending.php')?>
-        <div class="share-buttons share-buttons-home">
-            <div class="container">
-                <script type="text/javascript"
-                    src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-63430163bc99824a"></script>
-                <div class="share-buttons-block">
-                    <div class="share-icon"></div>
-                    <div class="sbb-title">
-                        <span>Share <?=$websiteTitle?></span>
-                        <p class="mb-0">to your friends</p>
+        
+        <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=64c3c802c1c66f0013218238&amp;product=inline-share-buttons&amp;source=platform">
+                    </script>
+                    
+<div class="share-buttons share-buttons-detail">
+                        <div class="share-buttons-block">
+                            <div class="share-icon"></div>
+                            <div class="sbb-title">
+                                <span>Share AnimeZia</span>
+                                <p class="mb-0">with your friends</p>
+                            </div>
+                            <div class="sbb-social">
+                                <div class="sharethis-inline-share-buttons st-justified  st-inline-share-buttons st-animated" id="st-1"><div class="st-btn st-first  st-remove-label" data-network="facebook" style="display: inline-block;">
+  <img alt="facebook sharing button" src="https://platform-cdn.sharethis.com/img/facebook.svg">
+  
+</div><div class="st-btn  st-remove-label" data-network="print" style="display: inline-block;">
+  <img alt="print sharing button" src="https://platform-cdn.sharethis.com/img/print.svg">
+  
+</div><div class="st-btn  st-remove-label" data-network="twitter" style="display: none;">
+  <img alt="twitter sharing button" src="https://platform-cdn.sharethis.com/img/twitter.svg">
+  
+</div><div class="st-btn  st-remove-label" data-network="whatsapp" style="display: none;">
+  <img alt="whatsapp sharing button" src="https://platform-cdn.sharethis.com/img/whatsapp.svg">
+  
+</div><div class="st-btn  st-remove-label" data-network="pinterest" style="display: none;">
+  <img alt="pinterest sharing button" src="https://platform-cdn.sharethis.com/img/pinterest.svg">
+  
+</div><div class="st-btn st-last  st-remove-label" data-network="reddit" style="display: none;">
+  <img alt="reddit sharing button" src="https://platform-cdn.sharethis.com/img/reddit.svg">
+  
+</div></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
                     </div>
-                    <div class="addthis_inline_share_toolbox"></div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
+ 
+        <div id="anime-featured">
+
         </div>
+        <div id="main-wrapper">
+            <div class="container">
+                <div id="main-content">
+                <?php if(isset($_COOKIE['userID'])){ 
+                    $user_id = $_COOKIE['userID'];
+                    $select = mysqli_query($conn, "SELECT * FROM `user_history` WHERE user_id = $user_id");
+                    $rows = mysqli_fetch_all($select, MYSQLI_ASSOC);
+                    $rows = array_reverse($rows);
+                    if(count($rows) != 0){ ?>
+
+                <section class="block_area block_area_home">
+                    <div class="block_area-header">
+                        <div class="float-left bah-heading mr-4">
+                            <h2 class="cat-heading"><i class="fas fa-history mr-2"></i>Continue Watching</h2>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="block_area-content block_area-list film_list film_list-grid">
+                            <div class="film_list-wrap">
+
+                                <?php 
+                    
+                     
+                        foreach (array_slice($rows,4,4) as $rows) 
+                      { ?>
+                                <div class="flw-item">
+                                    <div class="film-poster">
+                                        <div class="tick ltr">
+                                            <div class="tick-item-<?=$rows['dubOrSub']?> tick-eps amp-algn">
+                                                <?=strtoupper($rows['dubOrSub'])?></div>
+                                        </div>
+                                        <div class="tick rtl">
+                                            <div class="tick-item tick-eps amp-algn">Episode <?=$rows['anime_ep']?>
+                                            </div>
+                                        </div>
+                                        <img class="film-poster-img lazyload" data-src="<?=$rows['anime_image']?>"
+                                            src="https://anikatsu.me/files/images/no_poster.jpg"
+                                            alt="<?=$rows['anime_title']?>">
+                                        <a class="film-poster-ahref" href="/watch/<?=$rows['anime_id']?>"
+                                            title="<?=$rows['anime_title']?>" data-jname="<?=$rows['anime_title']?>"><i
+                                                class="fas fa-play"></i></a>
+                                    </div>
+                                    <div class="film-detail">
+                                        <h3 class="film-name">
+                                            <a href="/watch/<?=$rows['anime_id']?>" title="<?=$rows['anime_title']?>"
+                                                data-jname="<?=$rows['anime_title']?>"><?=$rows['anime_title']?></a>
+                                        </h3>
+                                        <div class="fd-infor">
+                                            <span class="fdi-item"><?=$rows['anime_release']?></span>
+                                            <span class="dot"></span>
+                                            <span class="fdi-item"><?=$rows['anime_type']?></span>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <?php } ?>
+
+
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </section>
+                <?php } ?>
+
+                <?php } ?>
+                
+                <div id="anime-featured">
+<div class="container">
+<div class="anif-blocks">
+<div class="row">
+<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="anif-block anif-block-01">
+<div class="anif-block-header">Fall</div>
+<div class="anif-block-ul">
+<ul class="ulclear">
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="12523" data-src="https://gogocdn.net/cover/renai-flops-dub.png" alt="Renai Flops (Dub)" src="https://gogocdn.net/cover/renai-flops-dub.png" title="Renai Flops (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="12523" href="/anime/renai-flops-dub" title="Renai Flops (Dub)" data-jname="Renai Flops (Dub)" style="opacity: 1;">Renai Flops (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Fall 2022 </span>
+<span class="dot"></span>
+<span class="fdi-item">Ongoing</span><span class="dot"></span> <span class="fdi-item fdi-duration">2022</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li>
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="11550" data-src="https://gogocdn.net/cover/urusei-yatsura-2022-dub.png" alt="Urusei Yatsura (2022) (Dub)" src="https://gogocdn.net/cover/urusei-yatsura-2022-dub.png" title="Urusei Yatsura (2022) (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="11550" href="/anime/urusei-yatsura-2022-dub" title="Urusei Yatsura (2022) (Dub)" data-jname="Urusei Yatsura (2022) (Dub)" style="opacity: 1;">Urusei Yatsura (2022) (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Fall 2022 </span>
+<span class="dot"></span>
+<span class="fdi-item">Ongoing</span><span class="dot"></span> <span class="fdi-item fdi-duration">2022</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li>
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="11508" data-src="https://gogocdn.net/cover/peter-grill-to-kenja-no-jikan-super-extra-dub.png" alt="Peter Grill to Kenja no Jikan: Super Extra (Dub)" src="https://gogocdn.net/cover/peter-grill-to-kenja-no-jikan-super-extra-dub.png" title="Peter Grill to Kenja no Jikan: Super Extra (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="11508" href="/anime/peter-grill-to-kenja-no-jikan-super-extra-dub" title="Peter Grill to Kenja no Jikan: Super Extra (Dub)" data-jname="Peter Grill to Kenja no Jikan: Super Extra (Dub)" style="opacity: 1;">Peter Grill to Kenja no Jikan: Super Extra (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Fall 2022 </span>
+<span class="dot"></span>
+<span class="fdi-item">Ongoing</span><span class="dot"></span> <span class="fdi-item fdi-duration">2022</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li>
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="11498" data-src="https://gogocdn.net/cover/kidou-senshi-gundam-suisei-no-majo-dub.png" alt="Kidou Senshi Gundam: Suisei no Majo (Dub)" src="https://gogocdn.net/cover/kidou-senshi-gundam-suisei-no-majo-dub.png" title="Kidou Senshi Gundam: Suisei no Majo (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="11498" href="/anime/kidou-senshi-gundam-suisei-no-majo-dub" title="Kidou Senshi Gundam: Suisei no Majo (Dub)" data-jname="Kidou Senshi Gundam: Suisei no Majo (Dub)" style="opacity: 1;">Kidou Senshi Gundam: Suisei no Majo (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Fall 2022 </span>
+<span class="dot"></span>
+<span class="fdi-item">Ongoing</span><span class="dot"></span> <span class="fdi-item fdi-duration">2022</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li>
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="11481" data-src="https://gogocdn.net/cover/meitantei-conan-hannin-no-hanzawa-san-dub.png" alt="Meitantei Conan: Hannin no Hanzawa-san (Dub)" src="https://gogocdn.net/cover/meitantei-conan-hannin-no-hanzawa-san-dub.png" title="Meitantei Conan: Hannin no Hanzawa-san (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="11481" href="/anime/meitantei-conan-hannin-no-hanzawa-san-dub" title="Meitantei Conan: Hannin no Hanzawa-san (Dub)" data-jname="Meitantei Conan: Hannin no Hanzawa-san (Dub)" style="opacity: 1;">Meitantei Conan: Hannin no Hanzawa-san (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Fall 2022 </span>
+<span class="dot"></span>
+<span class="fdi-item">Completed</span><span class="dot"></span> <span class="fdi-item fdi-duration">2022</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li> </ul>
+<div class="clearfix"></div>
+</div>
+<div class="more"><a href="/sub-category/Fall+2022+Anime">View more <i class="fas fa-angle-right ml-2"></i></a></div>
+</div>
+</div>
+<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="anif-block anif-block-01">
+<div class="anif-block-header">Summer</div>
+<div class="anif-block-ul">
+<ul class="ulclear">
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="12511" data-src="https://gogocdn.net/cover/kami-kuzuidol-dub.png" alt="Kami Kuzu☆Idol (Dub)" src="https://gogocdn.net/cover/kami-kuzuidol-dub.png" title="Kami Kuzu☆Idol (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="12511" href="/anime/kami-kuzuidol-dub" title="Kami Kuzu☆Idol (Dub)" data-jname="Kami Kuzu☆Idol (Dub)" style="opacity: 1;">Kami Kuzu☆Idol (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Summer 2022 </span>
+<span class="dot"></span>
+<span class="fdi-item">Ongoing</span><span class="dot"></span> <span class="fdi-item fdi-duration">2022</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li>
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="11629" data-src="https://gogocdn.net/cover/isekai-ojisan-dub.png" alt="Isekai Ojisan (Dub)" src="https://gogocdn.net/cover/isekai-ojisan-dub.png" title="Isekai Ojisan (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="11629" href="/anime/isekai-ojisan-dub" title="Isekai Ojisan (Dub)" data-jname="Isekai Ojisan (Dub)" style="opacity: 1;">Isekai Ojisan (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Summer 2022 </span>
+<span class="dot"></span>
+<span class="fdi-item">Completed</span><span class="dot"></span> <span class="fdi-item fdi-duration">2022</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li>
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="11407" data-src="https://gogocdn.net/cover/utawarerumono-futari-no-hakuoro-dub.png" alt="Utawarerumono: Futari no Hakuoro (Dub)" src="https://gogocdn.net/cover/utawarerumono-futari-no-hakuoro-dub.png" title="Utawarerumono: Futari no Hakuoro (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="11407" href="/anime/utawarerumono-futari-no-hakuoro-dub" title="Utawarerumono: Futari no Hakuoro (Dub)" data-jname="Utawarerumono: Futari no Hakuoro (Dub)" style="opacity: 1;">Utawarerumono: Futari no Hakuoro (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Summer 2022 </span>
+<span class="dot"></span>
+<span class="fdi-item">Completed</span><span class="dot"></span> <span class="fdi-item fdi-duration">2022</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li>
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="11193" data-src="https://gogocdn.net/cover/kumichou-musume-to-sewagakari-dub.png" alt="Kumichou Musume to Sewagakari (Dub)" src="https://gogocdn.net/cover/kumichou-musume-to-sewagakari-dub.png" title="Kumichou Musume to Sewagakari (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="11193" href="/anime/kumichou-musume-to-sewagakari-dub" title="Kumichou Musume to Sewagakari (Dub)" data-jname="Kumichou Musume to Sewagakari (Dub)" style="opacity: 1;">Kumichou Musume to Sewagakari (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Summer 2022 </span>
+<span class="dot"></span>
+<span class="fdi-item">Completed</span><span class="dot"></span> <span class="fdi-item fdi-duration">2022</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li>
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="11073" data-src="https://gogocdn.net/cover/dungeon-ni-deai-wo-motomeru-no-wa-machigatteiru-darou-ka-iv-shin-shou-meikyuu-hen-dub.png" alt="Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka IV: Shin Shou - Meikyuu-hen (Dub)" src="https://gogocdn.net/cover/dungeon-ni-deai-wo-motomeru-no-wa-machigatteiru-darou-ka-iv-shin-shou-meikyuu-hen-dub.png" title="Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka IV: Shin Shou - Meikyuu-hen (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="11073" href="/anime/dungeon-ni-deai-wo-motomeru-no-wa-machigatteiru-darou-ka-iv-shin-shou-meikyuu-hen-dub" title="Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka IV: Shin Shou - Meikyuu-hen (Dub)" data-jname="Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka IV: Shin Shou - Meikyuu-hen (Dub)" style="opacity: 1;">Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka IV: Shin Shou - Meikyuu-hen (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Summer 2022 </span>
+<span class="dot"></span>
+<span class="fdi-item">Completed</span><span class="dot"></span> <span class="fdi-item fdi-duration">2022</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li> </ul>
+<div class="clearfix"></div>
+</div>
+<div class="more"><a href="/sub-category/Summer+2022+Anime">View more <i class="fas fa-angle-right ml-2"></i></a></div>
+</div>
+</div>
+<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="anif-block anif-block-04">
+<div class="anif-block-header">Spring</div>
+<div class="anif-block-ul">
+<ul class="ulclear">
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="12534" data-src="https://gogocdn.net/cover/pokemon-2023-dub.png" alt="Pokemon (2023) (Dub)" src="https://gogocdn.net/cover/pokemon-2023-dub.png" title="Pokemon (2023) (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="12534" href="/anime/pokemon-2023-dub" title="Pokemon (2023) (Dub)" data-jname="Pokemon (2023) (Dub)" style="opacity: 1;">Pokemon (2023) (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Spring 2023 </span>
+<span class="dot"></span>
+<span class="fdi-item">Ongoing</span><span class="dot"></span> <span class="fdi-item fdi-duration">2023</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li>
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="12359" data-src="https://gogocdn.net/cover/rurouni-kenshin-meiji-kenkaku-romantan-2023-dub.png" alt="Rurouni Kenshin: Meiji Kenkaku Romantan (2023)  (Dub)" src="https://gogocdn.net/cover/rurouni-kenshin-meiji-kenkaku-romantan-2023-dub.png" title="Rurouni Kenshin: Meiji Kenkaku Romantan (2023)  (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="12359" href="/anime/rurouni-kenshin-meiji-kenkaku-romantan-2023-dub" title="Rurouni Kenshin: Meiji Kenkaku Romantan (2023)  (Dub)" data-jname="Rurouni Kenshin: Meiji Kenkaku Romantan (2023)  (Dub)" style="opacity: 1;">Rurouni Kenshin: Meiji Kenkaku Romantan (2023)  (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Spring 2023 </span>
+<span class="dot"></span>
+<span class="fdi-item">Ongoing</span><span class="dot"></span> <span class="fdi-item fdi-duration">2023</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li>
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="12004" data-src="https://gogocdn.net/cover/dekiru-neko-wa-kyou-mo-yuuutsu-1688153516.png" alt="Dekiru Neko wa Kyou mo Yuuutsu" src="https://gogocdn.net/cover/dekiru-neko-wa-kyou-mo-yuuutsu-1688153516.png" title="Dekiru Neko wa Kyou mo Yuuutsu">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="12004" href="/anime/dekiru-neko-wa-kyou-mo-yuuutsu" title="Dekiru Neko wa Kyou mo Yuuutsu" data-jname="Dekiru Neko wa Kyou mo Yuuutsu" style="opacity: 1;">Dekiru Neko wa Kyou mo Yuuutsu</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Spring 2023 </span>
+<span class="dot"></span>
+<span class="fdi-item">Completed</span><span class="dot"></span> <span class="fdi-item fdi-duration">2023</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li>
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="11876" data-src="https://gogocdn.net/cover/demon-slayer-kimetsu-no-yaiba-swordsmith-village-arc-dub.png" alt="Demon Slayer: Kimetsu no Yaiba Swordsmith Village Arc (Dub)" src="https://gogocdn.net/cover/demon-slayer-kimetsu-no-yaiba-swordsmith-village-arc-dub.png" title="Demon Slayer: Kimetsu no Yaiba Swordsmith Village Arc (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="11876" href="/anime/demon-slayer-kimetsu-no-yaiba-swordsmith-village-arc-dub" title="Demon Slayer: Kimetsu no Yaiba Swordsmith Village Arc (Dub)" data-jname="Demon Slayer: Kimetsu no Yaiba Swordsmith Village Arc (Dub)" style="opacity: 1;">Demon Slayer: Kimetsu no Yaiba Swordsmith Village Arc (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Spring 2023 </span>
+<span class="dot"></span>
+<span class="fdi-item">Ongoing</span><span class="dot"></span> <span class="fdi-item fdi-duration">2023</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li>
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="11874" data-src="https://gogocdn.net/cover/mashle-dub.png" alt="Mashle (Dub)" src="https://gogocdn.net/cover/mashle-dub.png" title="Mashle (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="11874" href="/anime/mashle-dub" title="Mashle (Dub)" data-jname="Mashle (Dub)" style="opacity: 1;">Mashle (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Spring 2023 </span>
+<span class="dot"></span>
+<span class="fdi-item">Ongoing</span><span class="dot"></span> <span class="fdi-item fdi-duration">2023</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li> </ul>
+<div class="clearfix"></div>
+</div>
+<div class="more">
+<a href="/sub-category/Spring+2023+Anime">View more <i class="fas fa-angle-right ml-2"></i></a>
+</div>
+</div>
+</div>
+<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="anif-block anif-block-01">
+<div class="anif-block-header">Winter</div>
+<div class="anif-block-ul">
+<ul class="ulclear">
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="12637" data-src="https://gogocdn.net/cover/akuyaku-reijou-level-99-watashi-wa-ura-boss-desu-ga-maou-dewa-arimasen-1704167871.png" alt="Akuyaku Reijou Level 99: Watashi wa Ura-Boss desu ga Maou dewa Arimasen" src="https://gogocdn.net/cover/akuyaku-reijou-level-99-watashi-wa-ura-boss-desu-ga-maou-dewa-arimasen-1704167871.png" title="Akuyaku Reijou Level 99: Watashi wa Ura-Boss desu ga Maou dewa Arimasen">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="12637" href="/anime/akuyaku-reijou-level-99-watashi-wa-ura-boss-desu-ga-maou-dewa-arimasen" title="Akuyaku Reijou Level 99: Watashi wa Ura-Boss desu ga Maou dewa Arimasen" data-jname="Akuyaku Reijou Level 99: Watashi wa Ura-Boss desu ga Maou dewa Arimasen" style="opacity: 1;">Akuyaku Reijou Level 99: Watashi wa Ura-Boss desu ga Maou dewa Arimasen</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Winter 2023 </span>
+<span class="dot"></span>
+<span class="fdi-item">Ongoing</span><span class="dot"></span> <span class="fdi-item fdi-duration">2024</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li>
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="11904" data-src="https://gogocdn.net/cover/isekai-nonbiri-nouka-dub.png" alt="Isekai Nonbiri Nouka (Dub)" src="https://gogocdn.net/cover/isekai-nonbiri-nouka-dub.png" title="Isekai Nonbiri Nouka (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="11904" href="/anime/isekai-nonbiri-nouka-dub" title="Isekai Nonbiri Nouka (Dub)" data-jname="Isekai Nonbiri Nouka (Dub)" style="opacity: 1;">Isekai Nonbiri Nouka (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Winter 2023 </span>
+<span class="dot"></span>
+<span class="fdi-item">Completed</span><span class="dot"></span> <span class="fdi-item fdi-duration">2023</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li>
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="11813" data-src="https://gogocdn.net/cover/cardfight-vanguard-willdress-season-2-dub.png" alt="Cardfight!! Vanguard: will+Dress Season 2 (Dub)" src="https://gogocdn.net/cover/cardfight-vanguard-willdress-season-2-dub.png" title="Cardfight!! Vanguard: will+Dress Season 2 (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="11813" href="/anime/cardfight-vanguard-willdress-season-2-dub" title="Cardfight!! Vanguard: will+Dress Season 2 (Dub)" data-jname="Cardfight!! Vanguard: will+Dress Season 2 (Dub)" style="opacity: 1;">Cardfight!! Vanguard: will+Dress Season 2 (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Winter 2023 </span>
+<span class="dot"></span>
+<span class="fdi-item">Ongoing</span><span class="dot"></span> <span class="fdi-item fdi-duration">2023</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li>
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="11770" data-src="https://gogocdn.net/cover/dungeon-ni-deai-wo-motomeru-no-wa-machigatteiru-darou-ka-iv-fuka-shou-yakusai-hen-dub.png" alt="Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka IV: Fuka Shou - Yakusai-hen (Dub)" src="https://gogocdn.net/cover/dungeon-ni-deai-wo-motomeru-no-wa-machigatteiru-darou-ka-iv-fuka-shou-yakusai-hen-dub.png" title="Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka IV: Fuka Shou - Yakusai-hen (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="11770" href="/anime/dungeon-ni-deai-wo-motomeru-no-wa-machigatteiru-darou-ka-iv-fuka-shou-yakusai-hen-dub" title="Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka IV: Fuka Shou - Yakusai-hen (Dub)" data-jname="Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka IV: Fuka Shou - Yakusai-hen (Dub)" style="opacity: 1;">Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka IV: Fuka Shou - Yakusai-hen (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Winter 2023 </span>
+<span class="dot"></span>
+<span class="fdi-item">Completed</span><span class="dot"></span> <span class="fdi-item fdi-duration">2023</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li>
+<li>
+<div class="film-poster">
+<img class="film-poster-img ls-is-cached lazyloaded tooltipEl" animeid="11750" data-src="https://gogocdn.net/cover/kyokou-suiri-season-2-dub.png" alt="Kyokou Suiri Season 2 (Dub)" src="https://gogocdn.net/cover/kyokou-suiri-season-2-dub.png" title="Kyokou Suiri Season 2 (Dub)">
+</div>
+<div class="film-detail">
+<h3 class="film-name">
+<a class="dynamic-name tooltipEl" animeid="11750" href="/anime/kyokou-suiri-season-2-dub" title="Kyokou Suiri Season 2 (Dub)" data-jname="Kyokou Suiri Season 2 (Dub)" style="opacity: 1;">Kyokou Suiri Season 2 (Dub)</a>
+</h3>
+<div class="fd-infor">
+<span class="fdi-item">Winter 2023 </span>
+<span class="dot"></span>
+<span class="fdi-item">Ongoing</span><span class="dot"></span> <span class="fdi-item fdi-duration">2023</span>
+</div>
+</div>
+<div class="clearfix"></div>
+</li> </ul>
+<div class="clearfix"></div>
+</div>
+<div class="more"><a href="/sub-category/Winter+2023+Anime">View more <i class="fas fa-angle-right ml-2"></i></a></div>
+</div>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+</div>
  
 	   
         <div id="main-wrapper">
